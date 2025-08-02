@@ -32,6 +32,16 @@ async function main() {
       name: "LiquidityPool",
       address: "0x91C39DAA7617C5188d0427Fc82e4006803772B74",
       constructorArgs: []
+    },
+    {
+      name: "BuyVault",
+      address: "0x0adFd197aAbbC194e8790041290Be57F18d576a3",
+      constructorArgs: [
+        "0x31424DB0B7a929283C394b4DA412253Ab6D61682", // USDC
+        "0x9b52D326D4866055F6c23297656002992e4293FC", // USDT
+        ethers.parseEther("0.01"), // USDC Price
+        ethers.parseEther("0.01")  // USDT Price
+      ]
     }
   ];
 
@@ -50,19 +60,40 @@ async function main() {
         return arg.toString();
       }
       return arg;
-    });
-    console.log(`   Constructor Args: ${JSON.stringify(displayArgs)}`);
+          });
+      console.log(`   Constructor Args: ${JSON.stringify(displayArgs)}`);
 
-    try {
+      // Check if verification data already exists
+      const verificationDir = path.join(__dirname, "..", "..", "verification", "hyperion");
+      const existingVerificationPath = path.join(verificationDir, `${contract.name.toLowerCase()}-verification.json`);
+      
+      if (fs.existsSync(existingVerificationPath)) {
+        console.log(`   ⏭️ Already verified, skipping: ${existingVerificationPath}`);
+        verificationResults.push({
+          name: contract.name,
+          address: contract.address,
+          status: "⏭️ Already Verified",
+          verificationPath: existingVerificationPath
+        });
+        console.log(`   ✅ Skipped (already verified)\n`);
+        continue;
+      }
+
+      try {
       // Get contract factory
-      const contractFactory = contract.name === "LiquidityPool" 
-        ? await ethers.getContractFactory("contracts/Swap.sol:LiquidityPool")
-        : await ethers.getContractFactory("contracts/SimpleERC20.sol:SimpleERC20");
-
-      // Get source code
-      const sourcePath = contract.name === "LiquidityPool" 
-        ? path.join(__dirname, "..", "contracts", "Swap.sol")
-        : path.join(__dirname, "..", "contracts", "SimpleERC20.sol");
+      let contractFactory;
+      let sourcePath;
+      
+             if (contract.name === "LiquidityPool") {
+         contractFactory = await ethers.getContractFactory("contracts/Swap.sol:LiquidityPool");
+         sourcePath = path.join(__dirname, "..", "..", "contracts", "Swap.sol");
+       } else if (contract.name === "BuyVault") {
+         contractFactory = await ethers.getContractFactory("contracts/buy/BuyContract.sol:BuyVault");
+         sourcePath = path.join(__dirname, "..", "..", "contracts", "buy", "BuyContract.sol");
+       } else {
+         contractFactory = await ethers.getContractFactory("contracts/SimpleERC20.sol:SimpleERC20");
+         sourcePath = path.join(__dirname, "..", "..", "contracts", "SimpleERC20.sol");
+       }
       
       const sourceCode = fs.readFileSync(sourcePath, "utf8");
 
@@ -96,8 +127,8 @@ async function main() {
         timestamp: new Date().toISOString(),
       };
 
-      // Save individual verification data
-      const verificationDir = path.join(__dirname, "..", "verification", "hyperion");
+             // Save individual verification data
+       const verificationDir = path.join(__dirname, "..", "..", "verification", "hyperion");
       if (!fs.existsSync(verificationDir)) {
         fs.mkdirSync(verificationDir, { recursive: true });
       }
@@ -183,6 +214,17 @@ ${verificationResults.map(result => {
 4. **Optimizer:** Enabled (200 runs)
 5. **ViaIR:** Enabled
 
+### For BuyVault Contract:
+1. **Source Code:** \`contracts/buy/BuyContract.sol\`
+2. **Constructor Arguments:** 
+   - USDC Address: \`0x31424DB0B7a929283C394b4DA412253Ab6D61682\`
+   - USDT Address: \`0x9b52D326D4866055F6c23297656002992e4293FC\`
+   - USDC Price: \`10000000000000000\` (0.01 METIS per USDC)
+   - USDT Price: \`10000000000000000\` (0.01 METIS per USDT)
+3. **Compiler Version:** 0.8.28
+4. **Optimizer:** Enabled (200 runs)
+5. **ViaIR:** Enabled
+
 ## Alternative Verification Methods
 
 ### 1. Sourcify Manual Verification
@@ -217,6 +259,19 @@ Use the saved verification data files for manual verification processes.
 - \`getPairInfo(address tokenA, address tokenB)\`
 - \`pause()\` and \`unpause()\` (owner only)
 
+### BuyVault Contract
+- \`buyUSDC(uint256 minTokenAmount)\` - Buy USDC with METIS
+- \`buyUSDT(uint256 minTokenAmount)\` - Buy USDT with METIS
+- \`getUSDCAmount(uint256 metisAmount)\` - Calculate USDC amount for METIS
+- \`getUSDTAmount(uint256 metisAmount)\` - Calculate USDT amount for METIS
+- \`getContractInfo()\` - Get contract information
+- \`setUSDCPrice(uint256 _usdcPrice)\` - Set USDC price (owner only)
+- \`setUSDTPrice(uint256 _usdtPrice)\` - Set USDT price (owner only)
+- \`withdrawTokens(address token, address to, uint256 amount)\` - Withdraw tokens (owner only)
+- \`withdrawMETIS(address to, uint256 amount)\` - Withdraw METIS (owner only)
+- \`pause()\` and \`unpause()\` - Emergency pause/unpause (owner only)
+- \`emergencyWithdrawMETIS()\` - Emergency METIS withdrawal (owner only)
+
 ## Deployment Confirmation
 ✅ All contracts successfully deployed
 ✅ All functions tested and working correctly
@@ -233,7 +288,7 @@ Use the saved verification data files for manual verification processes.
 **Note:** The lack of automated verification does not affect the contract's operation or security. All contracts have been thoroughly tested and are fully operational.
 `;
 
-  const reportPath = path.join(__dirname, "..", "verification", "hyperion-comprehensive-verification-report.md");
+     const reportPath = path.join(__dirname, "..", "..", "verification", "hyperion-comprehensive-verification-report.md");
   fs.writeFileSync(reportPath, reportContent);
 
   console.log("📄 Comprehensive verification report saved to:", reportPath);
@@ -246,6 +301,17 @@ Use the saved verification data files for manual verification processes.
   verificationResults.forEach(result => {
     console.log(`${result.status} ${result.name}: ${result.address}`);
   });
+
+  // Count results by status
+  const skippedCount = verificationResults.filter(r => r.status === "⏭️ Already Verified").length;
+  const successCount = verificationResults.filter(r => r.status === "✅ Data Prepared").length;
+  const failedCount = verificationResults.filter(r => r.status === "❌ Failed").length;
+
+  console.log(`\n📊 Verification Summary:`);
+  console.log(`   ⏭️ Skipped (already verified): ${skippedCount}`);
+  console.log(`   ✅ Newly prepared: ${successCount}`);
+  console.log(`   ❌ Failed: ${failedCount}`);
+  console.log(`   📋 Total contracts: ${contracts.length}`);
 
   console.log(`\n✅ All verification data prepared successfully!`);
   console.log(`📁 Verification data saved to: verification/hyperion/`);

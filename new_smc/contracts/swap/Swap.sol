@@ -24,16 +24,42 @@ contract LiquidityPool is Ownable, ReentrancyGuard {
         uint256 timestamp;
     }
 
+    // New staking structures
+    struct StakingPosition {
+        uint256 stakedAmount;
+        uint256 rewardDebt;
+        uint256 lastUpdateTime;
+        bool isStaked;
+    }
+
+    struct StakingPool {
+        address rewardToken;
+        uint256 totalStaked;
+        uint256 rewardPerToken;
+        uint256 lastUpdateTime;
+        uint256 rewardRate; // rewards per second
+        bool exists;
+    }
+
     mapping(bytes32 => Pair) public pairs;
     mapping(bytes32 => mapping(address => LiquidityPosition)) public liquidityPositions;
     
+    // New staking mappings
+    mapping(bytes32 => StakingPool) public stakingPools;
+    mapping(bytes32 => mapping(address => StakingPosition)) public stakingPositions;
+    
     bytes32[] public pairIds;
+    bytes32[] public stakingPoolIds;
     
     uint256 public constant MINIMUM_LIQUIDITY = 10**3;
     uint256 public constant FEE_DENOMINATOR = 10000;
     uint256 public tradingFee = 30; // 0.3%
     uint256 public constant MAX_FEE = 1000; // 10% max fee
     bool public paused;
+
+    // Staking constants
+    uint256 public constant REWARD_PRECISION = 1e18;
+    uint256 public constant MIN_STAKE_AMOUNT = 1e18; // 1 token minimum
 
     event PairCreated(
         address indexed tokenA,
@@ -66,6 +92,41 @@ contract LiquidityPool is Ownable, ReentrancyGuard {
         uint256 amountOut
     );
 
+    // New staking events
+    event StakingPoolCreated(
+        bytes32 indexed pairId,
+        address indexed rewardToken,
+        uint256 rewardRate
+    );
+
+    event Staked(
+        bytes32 indexed pairId,
+        address indexed user,
+        uint256 amount,
+        uint256 liquidity
+    );
+
+    event Unstaked(
+        bytes32 indexed pairId,
+        address indexed user,
+        uint256 amount,
+        uint256 liquidity
+    );
+
+    event RewardClaimed(
+        bytes32 indexed pairId,
+        address indexed user,
+        uint256 reward
+    );
+
+    // New buy events
+    event TokenBought(
+        address indexed token,
+        address indexed buyer,
+        uint256 ethAmount,
+        uint256 tokenAmount
+    );
+
     event TradingFeeUpdated(uint256 oldFee, uint256 newFee);
 
     constructor() Ownable(msg.sender) {}
@@ -74,6 +135,8 @@ contract LiquidityPool is Ownable, ReentrancyGuard {
         require(!paused, "Contract is paused");
         _;
     }
+
+    // ============ EXISTING AMM FUNCTIONS ============
 
     function createPair(address tokenA, address tokenB) external onlyOwner whenNotPaused returns (bytes32) {
         require(tokenA != tokenB, "Identical tokens");
@@ -276,6 +339,194 @@ contract LiquidityPool is Ownable, ReentrancyGuard {
         amountOut = numerator / denominator;
     }
 
+    // ============ NEW STAKING FUNCTIONS ============
+
+    function createStakingPool(
+        address tokenA,
+        address tokenB,
+        address rewardToken,
+        uint256 rewardRate
+    ) external onlyOwner whenNotPaused returns (bytes32) {
+        bytes32 pairId = getPairId(tokenA, tokenB);
+        require(pairs[pairId].exists, "Pair does not exist");
+        require(!stakingPools[pairId].exists, "Staking pool already exists");
+        require(rewardToken != address(0), "Invalid reward token");
+        require(rewardRate > 0, "Invalid reward rate");
+        
+        stakingPools[pairId] = StakingPool({
+            rewardToken: rewardToken,
+            totalStaked: 0,
+            rewardPerToken: 0,
+            lastUpdateTime: block.timestamp,
+            rewardRate: rewardRate,
+            exists: true
+        });
+        
+        stakingPoolIds.push(pairId);
+        
+        emit StakingPoolCreated(pairId, rewardToken, rewardRate);
+        return pairId;
+    }
+
+    function stakeLiquidity(address tokenA, address tokenB) external nonReentrant whenNotPaused {
+        bytes32 pairId = getPairId(tokenA, tokenB);
+        require(stakingPools[pairId].exists, "Staking pool does not exist");
+        
+        uint256 userLiquidity = liquidityPositions[pairId][msg.sender].liquidity;
+        require(userLiquidity >= MIN_STAKE_AMOUNT, "Insufficient liquidity to stake");
+        require(!stakingPositions[pairId][msg.sender].isStaked, "Already staked");
+        
+        // Update rewards
+        _updateRewards(pairId);
+        
+        // Create staking position
+        stakingPositions[pairId][msg.sender] = StakingPosition({
+            stakedAmount: userLiquidity,
+            rewardDebt: (userLiquidity * stakingPools[pairId].rewardPerToken) / REWARD_PRECISION,
+            lastUpdateTime: block.timestamp,
+            isStaked: true
+        });
+        
+        stakingPools[pairId].totalStaked += userLiquidity;
+        
+        emit Staked(pairId, msg.sender, userLiquidity, userLiquidity);
+    }
+
+    function unstakeLiquidity(address tokenA, address tokenB) external nonReentrant whenNotPaused {
+        bytes32 pairId = getPairId(tokenA, tokenB);
+        require(stakingPools[pairId].exists, "Staking pool does not exist");
+        require(stakingPositions[pairId][msg.sender].isStaked, "Not staked");
+        
+        // Claim rewards first
+        _claimRewards(pairId);
+        
+        uint256 stakedAmount = stakingPositions[pairId][msg.sender].stakedAmount;
+        
+        // Remove staking position
+        stakingPositions[pairId][msg.sender].isStaked = false;
+        stakingPositions[pairId][msg.sender].stakedAmount = 0;
+        stakingPositions[pairId][msg.sender].rewardDebt = 0;
+        
+        stakingPools[pairId].totalStaked -= stakedAmount;
+        
+        emit Unstaked(pairId, msg.sender, stakedAmount, stakedAmount);
+    }
+
+    function claimRewards(address tokenA, address tokenB) external nonReentrant whenNotPaused {
+        bytes32 pairId = getPairId(tokenA, tokenB);
+        require(stakingPools[pairId].exists, "Staking pool does not exist");
+        require(stakingPositions[pairId][msg.sender].isStaked, "Not staked");
+        
+        _claimRewards(pairId);
+    }
+
+    function _updateRewards(bytes32 pairId) internal {
+        StakingPool storage pool = stakingPools[pairId];
+        if (pool.totalStaked == 0) {
+            pool.lastUpdateTime = block.timestamp;
+            return;
+        }
+        
+        uint256 timeElapsed = block.timestamp - pool.lastUpdateTime;
+        if (timeElapsed > 0) {
+            uint256 rewards = timeElapsed * pool.rewardRate;
+            pool.rewardPerToken += (rewards * REWARD_PRECISION) / pool.totalStaked;
+            pool.lastUpdateTime = block.timestamp;
+        }
+    }
+
+    function _claimRewards(bytes32 pairId) internal {
+        _updateRewards(pairId);
+        
+        StakingPosition storage position = stakingPositions[pairId][msg.sender];
+        StakingPool storage pool = stakingPools[pairId];
+        
+        uint256 pendingReward = (position.stakedAmount * pool.rewardPerToken) / REWARD_PRECISION - position.rewardDebt;
+        
+        if (pendingReward > 0) {
+            position.rewardDebt = (position.stakedAmount * pool.rewardPerToken) / REWARD_PRECISION;
+            
+            require(IERC20(pool.rewardToken).transfer(msg.sender, pendingReward), "Reward transfer failed");
+            
+            emit RewardClaimed(pairId, msg.sender, pendingReward);
+        }
+    }
+
+    // ============ NEW BUY FUNCTIONS ============
+
+    function buyWithETH(address tokenOut, uint256 amountOutMin) 
+        external payable nonReentrant whenNotPaused returns (uint256 amountOut) {
+        require(msg.value > 0, "No ETH sent");
+        require(tokenOut != address(0), "Invalid token");
+        
+        // Find WETH pair - using WETH address from your deployment
+        address wethAddress = 0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4; // Your WETH address
+        require(wethAddress != address(0), "WETH not configured");
+        
+        bytes32 pairId = getPairId(wethAddress, tokenOut);
+        require(pairs[pairId].exists, "Pair does not exist");
+        
+        Pair storage pair = pairs[pairId];
+        require(pair.reserveA > 0 && pair.reserveB > 0, "Insufficient liquidity");
+        
+        // Determine which token is which
+        bool isWETHTokenA = wethAddress == pair.tokenA;
+        (uint256 reserveIn, uint256 reserveOut) = isWETHTokenA 
+            ? (pair.reserveA, pair.reserveB) 
+            : (pair.reserveB, pair.reserveA);
+        
+        // Calculate output amount
+        uint256 amountInWithFee = msg.value * (FEE_DENOMINATOR - tradingFee);
+        uint256 numerator = amountInWithFee * reserveOut;
+        uint256 denominator = (reserveIn * FEE_DENOMINATOR) + amountInWithFee;
+        amountOut = numerator / denominator;
+        
+        require(amountOut >= amountOutMin, "Insufficient output amount");
+        require(amountOut < reserveOut, "Insufficient liquidity");
+        require(amountOut > 0, "Zero output amount");
+        
+        // Transfer tokens
+        require(IERC20(tokenOut).transfer(msg.sender, amountOut), "Transfer out failed");
+        
+        // Update reserves
+        if (isWETHTokenA) {
+            pair.reserveA += msg.value;
+            pair.reserveB -= amountOut;
+        } else {
+            pair.reserveB += msg.value;
+            pair.reserveA -= amountOut;
+        }
+        
+        emit TokenBought(tokenOut, msg.sender, msg.value, amountOut);
+    }
+
+    function getBuyAmountOut(uint256 ethAmount, address tokenOut) 
+        external view returns (uint256 amountOut) {
+        require(ethAmount > 0, "Invalid ETH amount");
+        require(tokenOut != address(0), "Invalid token");
+        
+        address wethAddress = 0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4; // Your WETH address
+        require(wethAddress != address(0), "WETH not configured");
+        
+        bytes32 pairId = getPairId(wethAddress, tokenOut);
+        require(pairs[pairId].exists, "Pair does not exist");
+        
+        Pair storage pair = pairs[pairId];
+        bool isWETHTokenA = wethAddress == pair.tokenA;
+        (uint256 reserveIn, uint256 reserveOut) = isWETHTokenA 
+            ? (pair.reserveA, pair.reserveB) 
+            : (pair.reserveB, pair.reserveA);
+        
+        require(reserveIn > 0 && reserveOut > 0, "Insufficient liquidity");
+        
+        uint256 amountInWithFee = ethAmount * (FEE_DENOMINATOR - tradingFee);
+        uint256 numerator = amountInWithFee * reserveOut;
+        uint256 denominator = (reserveIn * FEE_DENOMINATOR) + amountInWithFee;
+        amountOut = numerator / denominator;
+    }
+
+    // ============ VIEW FUNCTIONS ============
+
     function getPairId(address tokenA, address tokenB) public pure returns (bytes32) {
         (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
         return keccak256(abi.encodePacked(token0, token1));
@@ -304,11 +555,65 @@ contract LiquidityPool is Ownable, ReentrancyGuard {
         return pairIds;
     }
 
+    // New staking view functions
+    function getStakingPoolInfo(address tokenA, address tokenB) external view returns (
+        address rewardToken,
+        uint256 totalStaked,
+        uint256 rewardPerToken,
+        uint256 rewardRate,
+        bool exists
+    ) {
+        bytes32 pairId = getPairId(tokenA, tokenB);
+        StakingPool storage pool = stakingPools[pairId];
+        rewardToken = pool.rewardToken;
+        totalStaked = pool.totalStaked;
+        rewardPerToken = pool.rewardPerToken;
+        rewardRate = pool.rewardRate;
+        exists = pool.exists;
+    }
+
+    function getUserStakingInfo(address tokenA, address tokenB, address user) external view returns (
+        uint256 stakedAmount,
+        uint256 pendingRewards,
+        bool isStaked
+    ) {
+        bytes32 pairId = getPairId(tokenA, tokenB);
+        StakingPosition storage position = stakingPositions[pairId][user];
+        StakingPool storage pool = stakingPools[pairId];
+        
+        stakedAmount = position.stakedAmount;
+        isStaked = position.isStaked;
+        
+        if (isStaked && pool.totalStaked > 0) {
+            uint256 currentRewardPerToken = pool.rewardPerToken;
+            if (block.timestamp > pool.lastUpdateTime) {
+                uint256 timeElapsed = block.timestamp - pool.lastUpdateTime;
+                uint256 rewards = timeElapsed * pool.rewardRate;
+                currentRewardPerToken += (rewards * REWARD_PRECISION) / pool.totalStaked;
+            }
+            pendingRewards = (position.stakedAmount * currentRewardPerToken) / REWARD_PRECISION - position.rewardDebt;
+        } else {
+            pendingRewards = 0;
+        }
+    }
+
+    function getAllStakingPools() external view returns (bytes32[] memory) {
+        return stakingPoolIds;
+    }
+
+    // ============ ADMIN FUNCTIONS ============
+
     function setTradingFee(uint256 _fee) external onlyOwner {
         require(_fee <= MAX_FEE, "Fee too high"); // Max 10%
         uint256 oldFee = tradingFee;
         tradingFee = _fee;
         emit TradingFeeUpdated(oldFee, _fee);
+    }
+
+    function setRewardRate(address tokenA, address tokenB, uint256 newRewardRate) external onlyOwner {
+        bytes32 pairId = getPairId(tokenA, tokenB);
+        require(stakingPools[pairId].exists, "Staking pool does not exist");
+        stakingPools[pairId].rewardRate = newRewardRate;
     }
 
     // Emergency functions
@@ -324,4 +629,9 @@ contract LiquidityPool is Ownable, ReentrancyGuard {
     function emergencyWithdraw(address token, uint256 amount) external onlyOwner {
         require(IERC20(token).transfer(owner(), amount), "Emergency withdrawal failed");
     }
-}
+
+    // Emergency ETH withdrawal
+    function emergencyWithdrawETH() external onlyOwner {
+        payable(owner()).transfer(address(this).balance);
+    }
+} 
