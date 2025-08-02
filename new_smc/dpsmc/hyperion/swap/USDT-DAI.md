@@ -29,6 +29,11 @@ The USDT-DAI trading pair represents a major stablecoin pair in the DeFi ecosyst
 - **Minimum Liquidity**: 1,000 tokens
 - **Pool Type**: Automated Market Maker (AMM)
 
+### Contract Verification
+- [LiquidityPool Verified on Blockscout](https://hyperion-testnet-explorer.metisdevops.link/address/0x91C39DAA7617C5188d0427Fc82e4006803772B74#code)
+- [USDT Verified](https://hyperion-testnet-explorer.metisdevops.link/address/0x9b52D326D4866055F6c23297656002992e4293FC#code)
+- [DAI Verified](https://hyperion-testnet-explorer.metisdevops.link/address/0xdE896235F5897EC6D13Aa5b43964F9d2d34D82Fb#code)
+
 ### Trading Features
 - **24/7 Trading**: Available round the clock
 - **Instant Swaps**: No order book required

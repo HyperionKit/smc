@@ -29,6 +29,11 @@ The USDT-WETH trading pair represents one of the most liquid pairs in the DeFi e
 - **Minimum Liquidity**: 1,000 tokens
 - **Pool Type**: Automated Market Maker (AMM)
 
+### Contract Verification
+- [LiquidityPool Verified on Blockscout](https://hyperion-testnet-explorer.metisdevops.link/address/0x91C39DAA7617C5188d0427Fc82e4006803772B74#code)
+- [USDT Verified](https://hyperion-testnet-explorer.metisdevops.link/address/0x9b52D326D4866055F6c23297656002992e4293FC#code)
+- [WETH Verified](https://hyperion-testnet-explorer.metisdevops.link/address/0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4#code)
+
 ### Trading Features
 - **24/7 Trading**: Available round the clock
 - **Instant Swaps**: No order book required

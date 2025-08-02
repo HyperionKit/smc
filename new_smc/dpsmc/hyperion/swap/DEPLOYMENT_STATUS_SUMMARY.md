@@ -23,6 +23,13 @@ All three networks have been successfully deployed with tokens, liquidity pools,
 - WETH: `0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4`
 - LiquidityPool: `0x91C39DAA7617C5188d0427Fc82e4006803772B74`
 
+**Contract Verification:** ✅ All contracts verified on Blockscout  
+- [LiquidityPool](https://hyperion-testnet-explorer.metisdevops.link/address/0x91C39DAA7617C5188d0427Fc82e4006803772B74#code)
+- [USDT](https://hyperion-testnet-explorer.metisdevops.link/address/0x9b52D326D4866055F6c23297656002992e4293FC#code)
+- [USDC](https://hyperion-testnet-explorer.metisdevops.link/address/0x31424DB0B7a929283C394b4DA412253Ab6D61682#code)
+- [DAI](https://hyperion-testnet-explorer.metisdevops.link/address/0xdE896235F5897EC6D13Aa5b43964F9d2d34D82Fb#code)
+- [WETH](https://hyperion-testnet-explorer.metisdevops.link/address/0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4#code)
+
 ---
 
 ### ✅ **Lazchain Network** - FULLY OPERATIONAL

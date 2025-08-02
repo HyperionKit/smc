@@ -29,6 +29,11 @@ The USDC-WBTC trading pair represents a major trading pair in the DeFi ecosystem
 - **Minimum Liquidity**: 1,000 tokens
 - **Pool Type**: Automated Market Maker (AMM)
 
+### Contract Verification
+- [LiquidityPool Verified on Blockscout](https://hyperion-testnet-explorer.metisdevops.link/address/0x91C39DAA7617C5188d0427Fc82e4006803772B74#code)
+- [USDC Verified](https://hyperion-testnet-explorer.metisdevops.link/address/0x31424DB0B7a929283C394b4DA412253Ab6D61682#code)
+- [WETH (used as WBTC) Verified](https://hyperion-testnet-explorer.metisdevops.link/address/0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4#code)
+
 ### Trading Features
 - **24/7 Trading**: Available round the clock
 - **Instant Swaps**: No order book required
