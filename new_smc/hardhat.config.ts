@@ -8,6 +8,9 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const config: HardhatUserConfig = {
+  sourcify: {
+    enabled: true
+  },
   solidity: {
     version: "0.8.28",
     settings: {
@@ -23,6 +26,14 @@ const config: HardhatUserConfig = {
       chainId: 31337,
     },
     hyperion: {
+      url: process.env.HYPERION_RPC_URL || "https://hyperion-testnet.metisdevops.link",
+      chainId: 133717,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 1000000000, // 1 gwei
+      gas: 8000000, // Higher gas limit
+      timeout: 120000, // 2 minutes timeout
+    },
+    "metis-hyperion-testnet": {
       url: process.env.HYPERION_RPC_URL || "https://hyperion-testnet.metisdevops.link",
       chainId: 133717,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
@@ -49,17 +60,26 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
-      hyperion: process.env.ETHERSCAN_API_KEY || "",
-      lazchain: process.env.ETHERSCAN_API_KEY || "",
-      metisSepolia: process.env.ETHERSCAN_API_KEY || "",
+      hyperion: process.env.ETHERSCAN_API_KEY || "dummy-key",
+      "metis-hyperion-testnet": "empty",
+      lazchain: process.env.ETHERSCAN_API_KEY || "dummy-key",
+      metisSepolia: process.env.ETHERSCAN_API_KEY || "dummy-key",
     },
     customChains: [
       {
         network: "hyperion",
         chainId: 133717,
         urls: {
-          apiURL: "https://explorer.hyperion-testnet.metisdevops.link/api",
-          browserURL: "https://explorer.hyperion-testnet.metisdevops.link"
+          apiURL: "https://hyperion-testnet.metisdevops.link/api",
+          browserURL: "https://hyperion-testnet.metisdevops.link"
+        }
+      },
+      {
+        network: "metis-hyperion-testnet",
+        chainId: 133717,
+        urls: {
+          apiURL: "https://hyperion-testnet-explorer-api.metisdevops.link/api",
+          browserURL: "https://hyperion-testnet-explorer.metisdevops.link"
         }
       },
       {

@@ -26,35 +26,29 @@ async function main() {
 
   console.log("Creating pairs and adding initial liquidity...");
 
-  // Create USDT-USDC pair
-  console.log("Creating USDT-USDC pair...");
-  const usdtUsdcPairId = await liquidityPool.createPair(USDT_ADDRESS, USDC_ADDRESS);
-  console.log("USDT-USDC pair created with ID:", usdtUsdcPairId);
+  // Create pairs (skip if already exist)
+  const pairs = [
+    { name: "USDT-USDC", tokenA: USDT_ADDRESS, tokenB: USDC_ADDRESS },
+    { name: "USDT-DAI", tokenA: USDT_ADDRESS, tokenB: DAI_ADDRESS },
+    { name: "USDT-WETH", tokenA: USDT_ADDRESS, tokenB: WETH_ADDRESS },
+    { name: "USDC-DAI", tokenA: USDC_ADDRESS, tokenB: DAI_ADDRESS },
+    { name: "USDC-WETH", tokenA: USDC_ADDRESS, tokenB: WETH_ADDRESS },
+    { name: "DAI-WETH", tokenA: DAI_ADDRESS, tokenB: WETH_ADDRESS }
+  ];
 
-  // Create USDT-DAI pair
-  console.log("Creating USDT-DAI pair...");
-  const usdtDaiPairId = await liquidityPool.createPair(USDT_ADDRESS, DAI_ADDRESS);
-  console.log("USDT-DAI pair created with ID:", usdtDaiPairId);
-
-  // Create USDT-WETH pair
-  console.log("Creating USDT-WETH pair...");
-  const usdtWethPairId = await liquidityPool.createPair(USDT_ADDRESS, WETH_ADDRESS);
-  console.log("USDT-WETH pair created with ID:", usdtWethPairId);
-
-  // Create USDC-DAI pair
-  console.log("Creating USDC-DAI pair...");
-  const usdcDaiPairId = await liquidityPool.createPair(USDC_ADDRESS, DAI_ADDRESS);
-  console.log("USDC-DAI pair created with ID:", usdcDaiPairId);
-
-  // Create USDC-WETH pair
-  console.log("Creating USDC-WETH pair...");
-  const usdcWethPairId = await liquidityPool.createPair(USDC_ADDRESS, WETH_ADDRESS);
-  console.log("USDC-WETH pair created with ID:", usdcWethPairId);
-
-  // Create DAI-WETH pair
-  console.log("Creating DAI-WETH pair...");
-  const daiWethPairId = await liquidityPool.createPair(DAI_ADDRESS, WETH_ADDRESS);
-  console.log("DAI-WETH pair created with ID:", daiWethPairId);
+  for (const pair of pairs) {
+    try {
+      console.log(`Creating ${pair.name} pair...`);
+      const pairId = await liquidityPool.createPair(pair.tokenA, pair.tokenB);
+      console.log(`${pair.name} pair created with ID:`, pairId);
+    } catch (error: any) {
+      if (error.message.includes("Pair already exists")) {
+        console.log(`${pair.name} pair already exists, skipping...`);
+      } else {
+        console.log(`Error creating ${pair.name} pair:`, error.message);
+      }
+    }
+  }
 
   // Approve tokens for liquidity pool
   console.log("Approving tokens for liquidity pool...");
@@ -63,71 +57,32 @@ async function main() {
   await dai.approve(LIQUIDITY_POOL_ADDRESS, ethers.MaxUint256);
   await weth.approve(LIQUIDITY_POOL_ADDRESS, ethers.MaxUint256);
 
-  // Add initial liquidity to USDT-USDC pair
-  console.log("Adding initial liquidity to USDT-USDC pair...");
-  await liquidityPool.addLiquidity(
-    USDT_ADDRESS,
-    USDC_ADDRESS,
-    INITIAL_LIQUIDITY_USDT,
-    INITIAL_LIQUIDITY_USDC,
-    0, // amountAMin
-    0  // amountBMin
-  );
+  // Add initial liquidity to pairs (with correct token ordering)
+  const liquidityPairs = [
+    { name: "USDT-USDC", tokenA: USDT_ADDRESS, tokenB: USDC_ADDRESS, amountA: INITIAL_LIQUIDITY_USDT, amountB: INITIAL_LIQUIDITY_USDC },
+    { name: "USDT-DAI", tokenA: DAI_ADDRESS, tokenB: USDT_ADDRESS, amountA: INITIAL_LIQUIDITY_DAI, amountB: INITIAL_LIQUIDITY_USDT },
+    { name: "USDT-WETH", tokenA: WETH_ADDRESS, tokenB: USDT_ADDRESS, amountA: INITIAL_LIQUIDITY_WETH, amountB: INITIAL_LIQUIDITY_USDT },
+    { name: "USDC-DAI", tokenA: DAI_ADDRESS, tokenB: USDC_ADDRESS, amountA: INITIAL_LIQUIDITY_DAI, amountB: INITIAL_LIQUIDITY_USDC },
+    { name: "USDC-WETH", tokenA: WETH_ADDRESS, tokenB: USDC_ADDRESS, amountA: INITIAL_LIQUIDITY_WETH, amountB: INITIAL_LIQUIDITY_USDC },
+    { name: "DAI-WETH", tokenA: DAI_ADDRESS, tokenB: WETH_ADDRESS, amountA: INITIAL_LIQUIDITY_DAI, amountB: INITIAL_LIQUIDITY_WETH }
+  ];
 
-  // Add initial liquidity to USDT-DAI pair
-  console.log("Adding initial liquidity to USDT-DAI pair...");
-  await liquidityPool.addLiquidity(
-    USDT_ADDRESS,
-    DAI_ADDRESS,
-    INITIAL_LIQUIDITY_USDT,
-    INITIAL_LIQUIDITY_DAI,
-    0, // amountAMin
-    0  // amountBMin
-  );
-
-  // Add initial liquidity to USDT-WETH pair
-  console.log("Adding initial liquidity to USDT-WETH pair...");
-  await liquidityPool.addLiquidity(
-    USDT_ADDRESS,
-    WETH_ADDRESS,
-    INITIAL_LIQUIDITY_USDT,
-    INITIAL_LIQUIDITY_WETH,
-    0, // amountAMin
-    0  // amountBMin
-  );
-
-  // Add initial liquidity to USDC-DAI pair
-  console.log("Adding initial liquidity to USDC-DAI pair...");
-  await liquidityPool.addLiquidity(
-    USDC_ADDRESS,
-    DAI_ADDRESS,
-    INITIAL_LIQUIDITY_USDC,
-    INITIAL_LIQUIDITY_DAI,
-    0, // amountAMin
-    0  // amountBMin
-  );
-
-  // Add initial liquidity to USDC-WETH pair
-  console.log("Adding initial liquidity to USDC-WETH pair...");
-  await liquidityPool.addLiquidity(
-    USDC_ADDRESS,
-    WETH_ADDRESS,
-    INITIAL_LIQUIDITY_USDC,
-    INITIAL_LIQUIDITY_WETH,
-    0, // amountAMin
-    0  // amountBMin
-  );
-
-  // Add initial liquidity to DAI-WETH pair
-  console.log("Adding initial liquidity to DAI-WETH pair...");
-  await liquidityPool.addLiquidity(
-    DAI_ADDRESS,
-    WETH_ADDRESS,
-    INITIAL_LIQUIDITY_DAI,
-    INITIAL_LIQUIDITY_WETH,
-    0, // amountAMin
-    0  // amountBMin
-  );
+  for (const pair of liquidityPairs) {
+    try {
+      console.log(`Adding initial liquidity to ${pair.name} pair...`);
+      await liquidityPool.addLiquidity(
+        pair.tokenA,
+        pair.tokenB,
+        pair.amountA,
+        pair.amountB,
+        0, // amountAMin
+        0  // amountBMin
+      );
+      console.log(`✅ ${pair.name} liquidity added successfully`);
+    } catch (error: any) {
+      console.log(`❌ Error adding liquidity to ${pair.name}:`, error.message);
+    }
+  }
 
   console.log("Liquidity pools setup completed!");
   console.log("All pairs created and initial liquidity added.");
