@@ -9,44 +9,15 @@ const TOKENS = {
 };
 
 const AMM_ADDRESS = "0x91C39DAA7617C5188d0427Fc82e4006803772B74";
+const STAKING_REWARDS_ADDRESS = "0x19D5806CE132788b2a97Eca276a6270B7A61fD66";
 
-// Staking pool configurations
+// Staking pool configurations with realistic reward rates
 const STAKING_POOLS = [
   {
     tokenA: "USDT",
     tokenB: "USDC",
     rewardToken: "DAI",
-    rewardRate: ethers.parseEther("0.1") // 0.1 DAI per second
-  },
-  {
-    tokenA: "USDT",
-    tokenB: "DAI",
-    rewardToken: "USDC",
-    rewardRate: ethers.parseEther("0.1") // 0.1 USDC per second
-  },
-  {
-    tokenA: "USDT",
-    tokenB: "WETH",
-    rewardToken: "DAI",
-    rewardRate: ethers.parseEther("0.2") // 0.2 DAI per second
-  },
-  {
-    tokenA: "USDC",
-    tokenB: "DAI",
-    rewardToken: "USDT",
-    rewardRate: ethers.parseEther("0.1") // 0.1 USDT per second
-  },
-  {
-    tokenA: "USDC",
-    tokenB: "WETH",
-    rewardToken: "USDT",
-    rewardRate: ethers.parseEther("0.2") // 0.2 USDT per second
-  },
-  {
-    tokenA: "DAI",
-    tokenB: "WETH",
-    rewardToken: "USDC",
-    rewardRate: ethers.parseEther("0.2") // 0.2 USDC per second
+    rewardRate: ethers.parseEther("0.3") // 0.3 DAI per second
   }
 ];
 
@@ -60,6 +31,24 @@ async function main() {
   // Get LiquidityPool contract
   const amm = await ethers.getContractAt("LiquidityPool", AMM_ADDRESS) as any;
   console.log("LiquidityPool address:", AMM_ADDRESS);
+  
+  // Check if deployer is the owner
+  const owner = await amm.owner();
+  console.log("Contract owner:", owner);
+  console.log("Deployer address:", deployer.address);
+  
+  if (owner.toLowerCase() !== deployer.address.toLowerCase()) {
+    console.log("❌ Deployer is not the contract owner. Cannot create staking pools.");
+    return;
+  }
+  
+  // Check if contract is paused
+  const isPaused = await amm.paused();
+  if (isPaused) {
+    console.log("❌ Contract is paused. Cannot create staking pools.");
+    return;
+  }
+  console.log("✅ Contract is not paused");
 
   // Get token contracts for reward transfers - using simple reference now
   const tokens = {
@@ -83,6 +72,15 @@ async function main() {
     console.log(`   Reward Rate: ${ethers.formatEther(pool.rewardRate)} ${pool.rewardToken}/second`);
 
     try {
+      // Check if pair exists first
+      const pairId = await amm.getPairId(tokenAAddress, tokenBAddress);
+      const pairInfo = await amm.pairs(pairId);
+      
+      if (!pairInfo.exists) {
+        console.log(`   ❌ Pair ${pool.tokenA}-${pool.tokenB} does not exist. Create the pair first.`);
+        continue;
+      }
+
       // Check if staking pool already exists
       const poolInfo = await amm.getStakingPoolInfo(tokenAAddress, tokenBAddress);
       if (poolInfo.exists) {
@@ -117,6 +115,12 @@ async function main() {
 
     } catch (error: any) {
       console.log(`   ❌ Failed to create staking pool: ${error.message}`);
+      if (error.data) {
+        console.log(`   Error data: ${error.data}`);
+      }
+      if (error.reason) {
+        console.log(`   Error reason: ${error.reason}`);
+      }
     }
 
     console.log(""); // Empty line for readability

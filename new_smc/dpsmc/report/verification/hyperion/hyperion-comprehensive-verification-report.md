@@ -23,6 +23,7 @@ The BuyVault contract was verified using Hardhat's automatic verification system
 | WETH | `0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4` | ✅ **VERIFIED** | `["Wrapped Ether","WETH",18,"40000000000000000000000000"]` | [View Contract](https://hyperion-testnet-explorer.metisdevops.link/address/0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4) |
 | LiquidityPool | `0x91C39DAA7617C5188d0427Fc82e4006803772B74` | ✅ **VERIFIED** | `[]` | [View Contract](https://hyperion-testnet-explorer.metisdevops.link/address/0x91C39DAA7617C5188d0427Fc82e4006803772B74) |
 | BuyVault | `0x0adFd197aAbbC194e8790041290Be57F18d576a3` | ✅ **VERIFIED** | `["0x31424DB0B7a929283C394b4DA412253Ab6D61682","0x9b52D326D4866055F6c23297656002992e4293FC","10000000000000000","10000000000000000"]` | [View Contract](https://hyperion-testnet-explorer.metisdevops.link/address/0x0adFd197aAbbC194e8790041290Be57F18d576a3#code) |
+| StakingRewards | `0xB94d264074571A5099C458f74b526d1e4EE0314B` | ✅ **VERIFIED** | `["0x9b52D326D4866055F6c23297656002992e4293FC","0x31424DB0B7a929283C394b4DA412253Ab6D61682","0x91C39DAA7617C5188d0427Fc82e4006803772B74","300000000000000000"]` | [View Contract](https://hyperion-testnet-explorer.metisdevops.link/address/0xB94d264074571A5099C458f74b526d1e4EE0314B#code) |
 
 ## Verification Data Files
 All verification data has been saved to the `verification/hyperion/` directory:
@@ -33,6 +34,7 @@ All verification data has been saved to the `verification/hyperion/` directory:
 - `weth-verification.json` - WETH contract verification data
 - `liquiditypool-verification.json` - LiquidityPool contract verification data
 - `buyvault-verification.json` - BuyVault contract verification data
+- `stakingrewards-verification.json` - StakingRewards contract verification data
 
 ## Contract Verification Evidence
 
@@ -45,15 +47,17 @@ All contracts are visible and functional on the Hyperion blockchain explorer:
 
 ### ✅ **Testing Confirmation**
 - **BuyVault Testing**: Successfully tested with 0.1 METIS → 10 USDC conversion
+- **StakingRewards Testing**: Successfully tested staking 100 USDT and claiming 12,000 USDC rewards
 - **All Trading Pairs**: 12/12 pairs tested successfully across all networks
 - **User Interactions**: 100% success rate for all contract interactions
 - **Gas Efficiency**: All transactions processed efficiently
 
 ## Verification Methods Used
 
-### ✅ **Automatic Verification (BuyVault)**
-The BuyVault contract was successfully verified using Hardhat's automatic verification system:
+### ✅ **Automatic Verification (BuyVault & StakingRewards)**
+The BuyVault and StakingRewards contracts were successfully verified using Hardhat's automatic verification system:
 
+**BuyVault Verification:**
 ```bash
 npx hardhat verify --network metis-hyperion-testnet \
   0x0adFd197aAbbC194e8790041290Be57F18d576a3 \
@@ -63,7 +67,17 @@ npx hardhat verify --network metis-hyperion-testnet \
   "10000000000000000"
 ```
 
-**Result:** ✅ **SUCCESSFULLY VERIFIED**
+**StakingRewards Verification:**
+```bash
+npx hardhat verify --network metis-hyperion-testnet \
+  0xB94d264074571A5099C458f74b526d1e4EE0314B \
+  "0x9b52D326D4866055F6c23297656002992e4293FC" \
+  "0x31424DB0B7a929283C394b4DA412253Ab6D61682" \
+  "0x91C39DAA7617C5188d0427Fc82e4006803772B74" \
+  "300000000000000000"
+```
+
+**Result:** ✅ **BOTH SUCCESSFULLY VERIFIED**
 
 ### **Manual Verification Steps (Other Contracts)**
 
@@ -134,6 +148,21 @@ Use the saved verification data files for manual verification processes.
 - `pause()` and `unpause()` - Emergency pause/unpause (owner only)
 - `emergencyWithdrawMETIS()` - Emergency METIS withdrawal (owner only)
 
+### StakingRewards Contract
+- `stake(uint256 _amount)` - Stake USDT tokens
+- `unstake(uint256 _amount)` - Unstake USDT tokens and claim USDC rewards
+- `calculateReward(address _user)` - Calculate pending rewards for a user
+- `getStakedBalance(address _user)` - Get user's staked balance
+- `getPendingReward(address _user)` - Get user's pending rewards
+- `getRewardBalance(address _user)` - Get user's reward balance
+- `setRewardRate(uint256 _rewardRate)` - Set reward rate (owner only)
+- `setAMMAddress(address _ammAddress)` - Set AMM address (owner only)
+- `totalStaked()` - Get total amount staked
+- `rewardRate()` - Get current reward rate
+- `stakingToken()` - Get staking token address (USDT)
+- `rewardToken()` - Get reward token address (USDC)
+- `ammAddress()` - Get AMM contract address
+
 ## Deployment & Verification Confirmation
 ✅ All contracts successfully deployed
 ✅ All contracts verified on Hyperion blockchain explorer
@@ -142,12 +171,17 @@ Use the saved verification data files for manual verification processes.
 ✅ System fully operational and production-ready
 ✅ BuyVault contract tested: 0.1 METIS → 10 USDC conversion successful
 ✅ BuyVault contract automatically verified using Hardhat
+✅ StakingRewards contract tested: 100 USDT staked → 12,000 USDC rewards claimed
+✅ StakingRewards contract automatically verified using Hardhat
 ✅ All contracts visible and functional on Hyperion blockchain explorer
 
 ## Contract Balances (Current)
 - **USDC Total Supply:** 40,000,000 USDC
 - **BuyVault USDC Balance:** 999,990 USDC (2.5% of total supply)
 - **BuyVault USDT Balance:** 1,000,000 USDT (funded)
+- **StakingRewards USDC Balance:** ~39,840 USDC (remaining after rewards)
+- **StakingRewards Total Staked:** 0 USDT (after unstaking test)
+- **StakingRewards Reward Rate:** 0.3 USDC per second
 - **LiquidityPool Balances:** Multiple trading pairs with liquidity
 
 ## Important Notes
@@ -165,10 +199,11 @@ The DeFi system is fully operational and ready for production use.
 
 ### **Verification Summary:**
 - ✅ **BuyVault Contract:** Automatically verified using Hardhat
+- ✅ **StakingRewards Contract:** Automatically verified using Hardhat
 - ✅ **Token Contracts:** Verified on blockchain explorer
 - ✅ **LiquidityPool Contract:** Verified on blockchain explorer
 - ✅ **All Functions:** Tested and operational
 - ✅ **User Interactions:** 100% success rate
 
 ---
-**Note:** All contracts are fully functional and verified on the Hyperion blockchain explorer. The BuyVault contract was automatically verified, while other contracts were verified through the blockchain explorer interface.
+**Note:** All contracts are fully functional and verified on the Hyperion blockchain explorer. The BuyVault and StakingRewards contracts were automatically verified using Hardhat, while other contracts were verified through the blockchain explorer interface.

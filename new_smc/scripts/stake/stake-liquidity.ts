@@ -8,6 +8,7 @@ const TOKENS = {
   WETH: "0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4"
 };
 
+const STAKING_CONTRACT_ADDRESS = "0xB94d264074571A5099C458f74b526d1e4EE0314B";
 const AMM_ADDRESS = "0x91C39DAA7617C5188d0427Fc82e4006803772B74";
 
 // Example: Stake USDT-USDC liquidity
@@ -16,80 +17,77 @@ const TOKEN_B = "USDC";
 
 async function main() {
   const [user] = await ethers.getSigners();
-  console.log("Staking liquidity with account:", user.address);
+  console.log("Staking USDT with account:", user.address);
 
   const balance = await ethers.provider.getBalance(user.address);
-  console.log("Account balance:", ethers.formatEther(balance), "ETH");
+  console.log("Account balance:", ethers.formatEther(balance), "METIS");
 
-  // Get LiquidityPool contract
-  const amm = await ethers.getContractAt("LiquidityPool", AMM_ADDRESS) as any;
-  console.log("LiquidityPool address:", AMM_ADDRESS);
+  // Get StakingRewards contract
+  const stakingContract = await ethers.getContractAt("StakingRewards", STAKING_CONTRACT_ADDRESS);
+  console.log("Staking contract address:", STAKING_CONTRACT_ADDRESS);
 
-  const tokenAAddress = TOKENS[TOKEN_A as keyof typeof TOKENS];
-  const tokenBAddress = TOKENS[TOKEN_B as keyof typeof TOKENS];
+  // Get token contracts
+  const usdtToken = await ethers.getContractAt("SimpleERC20", TOKENS.USDT);
+  const usdcToken = await ethers.getContractAt("SimpleERC20", TOKENS.USDC);
 
-  console.log(`\n📊 Staking ${TOKEN_A}-${TOKEN_B} liquidity...`);
+  console.log(`\n📊 Staking USDT for USDC rewards...`);
 
   try {
-    // Check if staking pool exists
-    const poolInfo = await amm.getStakingPoolInfo(tokenAAddress, tokenBAddress);
-    if (!poolInfo.exists) {
-      console.log(`❌ Staking pool does not exist for ${TOKEN_A}-${TOKEN_B}`);
-      return;
-    }
+    // Check contract info
+    console.log(`✅ Staking contract info:`);
+    console.log(`   Staking Token: ${await stakingContract.stakingToken()}`);
+    console.log(`   Reward Token: ${await stakingContract.rewardToken()}`);
+    console.log(`   Reward Rate: ${ethers.formatEther(await stakingContract.rewardRate())} tokens/second`);
+    console.log(`   Total Staked: ${ethers.formatEther(await stakingContract.totalStaked())}`);
 
-    console.log(`✅ Staking pool found:`);
-    console.log(`   Reward Token: ${poolInfo.rewardToken}`);
-    console.log(`   Total Staked: ${ethers.formatEther(poolInfo.totalStaked)}`);
-    console.log(`   Reward Rate: ${ethers.formatEther(poolInfo.rewardRate)} tokens/second`);
+    // Check user's USDT balance
+    const userUsdtBalance = await usdtToken.balanceOf(user.address);
+    console.log(`\n💰 Your USDT balance: ${ethers.formatUnits(userUsdtBalance, 6)}`);
 
-    // Check user's liquidity position
-    const userLiquidity = await amm.getUserLiquidity(tokenAAddress, tokenBAddress, user.address);
-    console.log(`\n💰 Your liquidity: ${ethers.formatEther(userLiquidity)}`);
-
-    if (userLiquidity === 0n) {
-      console.log(`❌ You don't have any liquidity in the ${TOKEN_A}-${TOKEN_B} pair`);
-      console.log(`   Add liquidity first using the addLiquidity function`);
+    if (userUsdtBalance === 0n) {
+      console.log(`❌ You don't have any USDT to stake`);
       return;
     }
 
     // Check if already staked
-    const stakingInfo = await amm.getUserStakingInfo(tokenAAddress, tokenBAddress, user.address);
-    if (stakingInfo.isStaked) {
-      console.log(`❌ You have already staked your liquidity`);
-      console.log(`   Staked Amount: ${ethers.formatEther(stakingInfo.stakedAmount)}`);
-      console.log(`   Pending Rewards: ${ethers.formatEther(stakingInfo.pendingRewards)}`);
+    const stakedBalance = await stakingContract.getStakedBalance(user.address);
+    if (stakedBalance > 0n) {
+      console.log(`❌ You have already staked USDT`);
+      console.log(`   Staked Amount: ${ethers.formatUnits(stakedBalance, 6)} USDT`);
+      console.log(`   Pending Rewards: ${ethers.formatUnits(await stakingContract.getPendingReward(user.address), 6)} USDC`);
       return;
     }
 
-    // Check minimum stake amount
-    const minStakeAmount = await amm.MIN_STAKE_AMOUNT();
-    if (userLiquidity < minStakeAmount) {
-      console.log(`❌ Insufficient liquidity to stake`);
-      console.log(`   Required: ${ethers.formatEther(minStakeAmount)}`);
-      console.log(`   Available: ${ethers.formatEther(userLiquidity)}`);
-      return;
-    }
-
-    console.log(`\n🚀 Staking your liquidity...`);
+    // Calculate stake amount (50% of user's USDT balance)
+    const stakeAmount = userUsdtBalance / 2n;
+    console.log(`\n🚀 Staking ${ethers.formatUnits(stakeAmount, 6)} USDT...`);
     
-    // Stake liquidity
-    const tx = await amm.stakeLiquidity(tokenAAddress, tokenBAddress);
+    // Approve USDT for staking contract
+    const allowance = await usdtToken.allowance(user.address, STAKING_CONTRACT_ADDRESS);
+    if (allowance < stakeAmount) {
+      console.log("Approving USDT for staking contract...");
+      const approveTx = await usdtToken.approve(STAKING_CONTRACT_ADDRESS, ethers.MaxUint256);
+      await approveTx.wait();
+      console.log("✅ USDT approved");
+    }
+
+    // Stake USDT
+    const tx = await stakingContract.stake(stakeAmount);
     console.log(`🔗 Transaction hash: ${tx.hash}`);
     
     const receipt = await tx.wait();
-    console.log(`✅ Liquidity staked successfully!`);
+    console.log(`✅ USDT staked successfully!`);
     console.log(`   Gas used: ${receipt?.gasUsed?.toString()}`);
 
     // Get updated staking info
-    const newStakingInfo = await amm.getUserStakingInfo(tokenAAddress, tokenBAddress, user.address);
+    const newStakedBalance = await stakingContract.getStakedBalance(user.address);
+    const pendingReward = await stakingContract.getPendingReward(user.address);
     console.log(`\n📊 Updated staking info:`);
-    console.log(`   Staked Amount: ${ethers.formatEther(newStakingInfo.stakedAmount)}`);
-    console.log(`   Is Staked: ${newStakingInfo.isStaked}`);
-    console.log(`   Pending Rewards: ${ethers.formatEther(newStakingInfo.pendingRewards)}`);
+    console.log(`   Staked Amount: ${ethers.formatUnits(newStakedBalance, 6)} USDT`);
+    console.log(`   Pending Rewards: ${ethers.formatUnits(pendingReward, 6)} USDC`);
 
   } catch (error: any) {
-    console.log(`❌ Failed to stake liquidity: ${error.message}`);
+    console.log(`❌ Failed to stake USDT: ${error.message}`);
   }
 }
 

@@ -1,23 +1,40 @@
-# DeFi Liquidity Pool System
-
-A complete DeFi system featuring ERC20 tokens, automated market maker (AMM) liquidity pools, and token swapping functionality.
-
 ## 🏗️ Project Structure
 
 ```
 ├── contracts/
-│   ├── SimpleERC20.sol          # ERC20 token implementation
-│   └── Swap.sol                 # Liquidity pool and swap contract
+│   ├── token/
+│   │   └── SimpleERC20.sol      # ERC20 token implementation
+│   ├── swap/
+│   │   ├── AMM.sol             # Automated Market Maker contract
+│   │   └── Swap.sol            # Liquidity pool and swap contract
+│   ├── staking/
+│   │   └── Staking.sol         # Staking rewards contract
+│   ├── buy/
+│   │   └── BuyContract.sol     # Token purchase contract
+│   └── bridge/
+│       └── Bridge.sol          # Cross-chain bridge contract
 ├── scripts/
-│   ├── deploy-tokens.ts         # Deploy ERC20 tokens
-│   ├── deploy-liquidity-pool.ts # Deploy liquidity pool
-│   ├── setup-liquidity-pools.ts # Setup pairs and add liquidity
-│   ├── deploy-hyperion.ts       # Full deployment for Hyperion
-│   ├── deploy-lazchain.ts       # Full deployment for Lazchain
-│   └── deploy-metisSepolia.ts   # Full deployment for Metis Sepolia
+│   ├── swap/
+│   │   ├── deploy-tokens.ts    # Deploy ERC20 tokens
+│   │   ├── deploy-liquidity-pool.ts # Deploy liquidity pool
+│   │   ├── setup-liquidity-pools.ts # Setup pairs and add liquidity
+│   │   └── pairs/              # Trading pair scripts
+│   ├── stake/
+│   │   ├── deploy-staking-contract.ts # Deploy staking contract
+│   │   ├── fund-staking-contract.ts   # Fund staking rewards
+│   │   ├── test-staking.ts           # Test staking functionality
+│   │   ├── stake-liquidity.ts        # Stake tokens
+│   │   └── unstake-and-claim.ts      # Unstake and claim rewards
+│   ├── buy/
+│   │   ├── deploy-buy-contract.ts    # Deploy buy contract
+│   │   ├── fund-buy-contract.ts      # Fund buy contract
+│   │   └── buy-usdc-with-metis.ts    # Buy tokens with METIS
+│   └── verify/                 # Contract verification scripts
 ├── test/
-│   └── DeFiSystem.test.ts       # Comprehensive test suite
-└── README.md                    # This file
+│   └── DeFiSystem.test.ts      # Comprehensive test suite
+├── docs/                       # Documentation for each network
+├── dpsmc/                      # Deployment status and reports
+└── README.md                   # This file
 ```
 
 ## 🚀 Features
@@ -35,6 +52,19 @@ A complete DeFi system featuring ERC20 tokens, automated market maker (AMM) liqu
 - **Fee Collection**: 0.3% trading fee (configurable)
 - **Emergency Controls**: Pause/unpause functionality
 - **Owner Controls**: Fee management and emergency functions
+
+### Staking Features
+- **Staking Rewards**: Stake USDT to earn USDC rewards
+- **Flexible Staking**: Stake and unstake at any time
+- **Real-time Rewards**: Rewards calculated based on time staked
+- **Configurable Rates**: Owner can adjust reward rates
+- **AMM Integration**: Connected to liquidity pool for enhanced functionality
+
+### Token Purchase Features
+- **METIS to Token**: Buy USDC/USDT with METIS
+- **Fixed Pricing**: Predictable token prices
+- **Slippage Protection**: Minimum amount guarantees
+- **Emergency Controls**: Pause/unpause functionality
 
 ### Trading Pairs
 - USDT/USDC
@@ -96,34 +126,69 @@ The test suite covers:
 
 2. **Deploy tokens**
    ```bash
-   npx hardhat run scripts/deploy-tokens.ts --network localhost
+   npx hardhat run scripts/swap/deploy-tokens.ts --network localhost
    ```
 
 3. **Deploy liquidity pool**
    ```bash
-   npx hardhat run scripts/deploy-liquidity-pool.ts --network localhost
+   npx hardhat run scripts/swap/deploy-liquidity-pool.ts --network localhost
    ```
 
 4. **Setup liquidity pools** (update addresses in script first)
    ```bash
-   npx hardhat run scripts/setup-liquidity-pools.ts --network localhost
+   npx hardhat run scripts/swap/setup-liquidity-pools.ts --network localhost
+   ```
+
+5. **Deploy staking contract**
+   ```bash
+   npx hardhat run scripts/stake/deploy-staking-contract.ts --network localhost
+   ```
+
+6. **Deploy buy contract**
+   ```bash
+   npx hardhat run scripts/buy/deploy-buy-contract.ts --network localhost
    ```
 
 ### Network Deployment
 
-#### Hyperion Network
+#### Hyperion Network (Fully Deployed & Verified)
+All contracts are deployed and verified on Hyperion testnet:
+
+**Deployed Contracts:**
+- **USDT**: `0x9b52D326D4866055F6c23297656002992e4293FC`
+- **USDC**: `0x31424DB0B7a929283C394b4DA412253Ab6D61682`
+- **DAI**: `0xdE896235F5897EC6D13Aa5b43964F9d2d34D82Fb`
+- **WETH**: `0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4`
+- **LiquidityPool**: `0x91C39DAA7617C5188d0427Fc82e4006803772B74`
+- **BuyVault**: `0x0adFd197aAbbC194e8790041290Be57F18d576a3`
+- **StakingRewards**: `0xB94d264074571A5099C458f74b526d1e4EE0314B`
+
+**Deployment Commands:**
 ```bash
-npx hardhat run scripts/deploy-hyperion.ts --network hyperion
+# Deploy tokens and liquidity pool
+npx hardhat run scripts/swap/deploy-tokens.ts --network metis-hyperion-testnet
+npx hardhat run scripts/swap/deploy-liquidity-pool.ts --network metis-hyperion-testnet
+npx hardhat run scripts/swap/setup-liquidity-pools.ts --network metis-hyperion-testnet
+
+# Deploy staking contract
+npx hardhat run scripts/stake/deploy-staking-contract.ts --network metis-hyperion-testnet
+
+# Deploy buy contract
+npx hardhat run scripts/buy/deploy-buy-contract.ts --network metis-hyperion-testnet
 ```
 
 #### Lazchain Network
 ```bash
-npx hardhat run scripts/deploy-lazchain.ts --network lazchain
+npx hardhat run scripts/swap/deploy-tokens.ts --network metis-lazchain-testnet
+npx hardhat run scripts/swap/deploy-liquidity-pool.ts --network metis-lazchain-testnet
+npx hardhat run scripts/swap/setup-liquidity-pools.ts --network metis-lazchain-testnet
 ```
 
 #### Metis Sepolia Network
 ```bash
-npx hardhat run scripts/deploy-metisSepolia.ts --network metisSepolia
+npx hardhat run scripts/swap/deploy-tokens.ts --network metis-sepolia-testnet
+npx hardhat run scripts/swap/deploy-liquidity-pool.ts --network metis-sepolia-testnet
+npx hardhat run scripts/swap/setup-liquidity-pools.ts --network metis-sepolia-testnet
 ```
 
 ## ⚙️ Configuration
@@ -184,6 +249,46 @@ METIS_SEPOLIA_RPC_URL=your_metis_sepolia_rpc_url
 - `pause()`: Pause all operations
 - `unpause()`: Resume operations
 - `emergencyWithdraw(token, amount)`: Emergency token withdrawal
+
+### StakingRewards Contract
+
+#### Core Functions
+- `stake(uint256 _amount)`: Stake USDT tokens
+- `unstake(uint256 _amount)`: Unstake USDT tokens and claim USDC rewards
+- `calculateReward(address _user)`: Calculate pending rewards for a user
+
+#### View Functions
+- `getStakedBalance(address _user)`: Get user's staked balance
+- `getPendingReward(address _user)`: Get user's pending rewards
+- `getRewardBalance(address _user)`: Get user's reward balance
+- `totalStaked()`: Get total amount staked
+- `rewardRate()`: Get current reward rate
+- `stakingToken()`: Get staking token address (USDT)
+- `rewardToken()`: Get reward token address (USDC)
+- `ammAddress()`: Get AMM contract address
+
+#### Admin Functions
+- `setRewardRate(uint256 _rewardRate)`: Set reward rate (owner only)
+- `setAMMAddress(address _ammAddress)`: Set AMM address (owner only)
+
+### BuyVault Contract
+
+#### Core Functions
+- `buyUSDC(uint256 minTokenAmount)`: Buy USDC with METIS
+- `buyUSDT(uint256 minTokenAmount)`: Buy USDT with METIS
+
+#### View Functions
+- `getUSDCAmount(uint256 metisAmount)`: Calculate USDC amount for METIS
+- `getUSDTAmount(uint256 metisAmount)`: Calculate USDT amount for METIS
+- `getContractInfo()`: Get contract information
+
+#### Admin Functions
+- `setUSDCPrice(uint256 _usdcPrice)`: Set USDC price (owner only)
+- `setUSDTPrice(uint256 _usdtPrice)`: Set USDT price (owner only)
+- `withdrawTokens(address token, address to, uint256 amount)`: Withdraw tokens (owner only)
+- `withdrawMETIS(address to, uint256 amount)`: Withdraw METIS (owner only)
+- `pause()` and `unpause()`: Emergency pause/unpause (owner only)
+- `emergencyWithdrawMETIS()`: Emergency METIS withdrawal (owner only)
 
 ### SimpleERC20 Contract
 
@@ -262,6 +367,30 @@ await liquidityPool.removeLiquidity(
   0, // amountAMin
   0  // amountBMin
 );
+```
+
+### Staking Tokens
+```javascript
+// Approve USDT for staking
+await usdt.approve(stakingRewards.address, stakeAmount);
+
+// Stake USDT to earn USDC rewards
+await stakingRewards.stake(stakeAmount);
+
+// Check pending rewards
+const pendingReward = await stakingRewards.getPendingReward(user.address);
+
+// Unstake and claim rewards
+await stakingRewards.unstake(stakedAmount);
+```
+
+### Buying Tokens with METIS
+```javascript
+// Calculate USDC amount for METIS
+const usdcAmount = await buyVault.getUSDCAmount(metisAmount);
+
+// Buy USDC with METIS
+await buyVault.buyUSDC(usdcAmount * 95n / 100n); // 5% slippage tolerance
 ```
 
 ## 🐛 Troubleshooting
