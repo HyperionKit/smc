@@ -24,6 +24,7 @@ The BuyVault contract was verified using Hardhat's automatic verification system
 | LiquidityPool | `0x91C39DAA7617C5188d0427Fc82e4006803772B74` | ✅ **VERIFIED** | `[]` | [View Contract](https://hyperion-testnet-explorer.metisdevops.link/address/0x91C39DAA7617C5188d0427Fc82e4006803772B74) |
 | BuyVault | `0x0adFd197aAbbC194e8790041290Be57F18d576a3` | ✅ **VERIFIED** | `["0x31424DB0B7a929283C394b4DA412253Ab6D61682","0x9b52D326D4866055F6c23297656002992e4293FC","10000000000000000","10000000000000000"]` | [View Contract](https://hyperion-testnet-explorer.metisdevops.link/address/0x0adFd197aAbbC194e8790041290Be57F18d576a3#code) |
 | StakingRewards | `0xB94d264074571A5099C458f74b526d1e4EE0314B` | ✅ **VERIFIED** | `["0x9b52D326D4866055F6c23297656002992e4293FC","0x31424DB0B7a929283C394b4DA412253Ab6D61682","0x91C39DAA7617C5188d0427Fc82e4006803772B74","300000000000000000"]` | [View Contract](https://hyperion-testnet-explorer.metisdevops.link/address/0xB94d264074571A5099C458f74b526d1e4EE0314B#code) |
+| Bridge | `0xfF064Fd496256e84b68dAE2509eDA84a3c235550` | ✅ **VERIFIED** | `["0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff"]` | [View Contract](https://hyperion-testnet-explorer.metisdevops.link/address/0xfF064Fd496256e84b68dAE2509eDA84a3c235550#code) |
 
 ## Verification Data Files
 All verification data has been saved to the `verification/hyperion/` directory:
@@ -35,6 +36,7 @@ All verification data has been saved to the `verification/hyperion/` directory:
 - `liquiditypool-verification.json` - LiquidityPool contract verification data
 - `buyvault-verification.json` - BuyVault contract verification data
 - `stakingrewards-verification.json` - StakingRewards contract verification data
+- `bridge-verification.json` - Bridge contract verification data
 
 ## Contract Verification Evidence
 
@@ -163,6 +165,21 @@ Use the saved verification data files for manual verification processes.
 - `rewardToken()` - Get reward token address (USDC)
 - `ammAddress()` - Get AMM contract address
 
+### Bridge Contract
+- `deposit(address token, uint256 amount, uint256 destinationChainId, address destinationAddress)` - Deposit tokens for cross-chain transfer
+- `withdraw(address user, address token, uint256 amount, bytes32 depositId, bytes calldata signature)` - Process withdrawal (relayer only)
+- `addToken(address token, string calldata symbol, uint256 chainId, uint8 decimals)` - Add supported token (owner only)
+- `removeToken(address token, uint256 chainId)` - Remove supported token (owner only)
+- `addRelayer(address relayer)` - Add trusted relayer (owner only)
+- `removeRelayer(address relayer)` - Remove relayer (owner only)
+- `setChainSupport(uint256 chainId, bool supported)` - Set network support (owner only)
+- `setBridgeFee(uint256 newFee)` - Update bridge fee (owner only)
+- `setWithdrawalTimeout(uint256 newTimeout)` - Update withdrawal timeout (owner only)
+- `getTokenAddress(string calldata symbol, uint256 chainId)` - Get token address by symbol and chain
+- `getTokenMappings(string calldata symbol)` - Get all mappings for a token symbol
+- `getBridgeStats()` - Get bridge statistics
+- `pause()` and `unpause()` - Emergency pause/unpause (owner only)
+
 ## Deployment & Verification Confirmation
 ✅ All contracts successfully deployed
 ✅ All contracts verified on Hyperion blockchain explorer
@@ -173,6 +190,8 @@ Use the saved verification data files for manual verification processes.
 ✅ BuyVault contract automatically verified using Hardhat
 ✅ StakingRewards contract tested: 100 USDT staked → 12,000 USDC rewards claimed
 ✅ StakingRewards contract automatically verified using Hardhat
+✅ Bridge contract tested: All 4 tokens successfully deposited and withdrawn
+✅ Bridge contract automatically verified using Hardhat
 ✅ All contracts visible and functional on Hyperion blockchain explorer
 
 ## Contract Balances (Current)
@@ -200,6 +219,7 @@ The DeFi system is fully operational and ready for production use.
 ### **Verification Summary:**
 - ✅ **BuyVault Contract:** Automatically verified using Hardhat
 - ✅ **StakingRewards Contract:** Automatically verified using Hardhat
+- ✅ **Bridge Contract:** Automatically verified using Hardhat
 - ✅ **Token Contracts:** Verified on blockchain explorer
 - ✅ **LiquidityPool Contract:** Verified on blockchain explorer
 - ✅ **All Functions:** Tested and operational
