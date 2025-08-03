@@ -25,6 +25,7 @@ The BuyVault contract was verified using Hardhat's automatic verification system
 | BuyVault | `0x0adFd197aAbbC194e8790041290Be57F18d576a3` | ✅ **VERIFIED** | `["0x31424DB0B7a929283C394b4DA412253Ab6D61682","0x9b52D326D4866055F6c23297656002992e4293FC","10000000000000000","10000000000000000"]` | [View Contract](https://hyperion-testnet-explorer.metisdevops.link/address/0x0adFd197aAbbC194e8790041290Be57F18d576a3#code) |
 | StakingRewards | `0xB94d264074571A5099C458f74b526d1e4EE0314B` | ✅ **VERIFIED** | `["0x9b52D326D4866055F6c23297656002992e4293FC","0x31424DB0B7a929283C394b4DA412253Ab6D61682","0x91C39DAA7617C5188d0427Fc82e4006803772B74","300000000000000000"]` | [View Contract](https://hyperion-testnet-explorer.metisdevops.link/address/0xB94d264074571A5099C458f74b526d1e4EE0314B#code) |
 | Bridge | `0xfF064Fd496256e84b68dAE2509eDA84a3c235550` | ✅ **VERIFIED** | `["0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff"]` | [View Contract](https://hyperion-testnet-explorer.metisdevops.link/address/0xfF064Fd496256e84b68dAE2509eDA84a3c235550#code) |
+| TransactionTracker | `0xd68a2cCa272c0ABDb3B0A2e6C15Ca86216cFDbe6` | ✅ **VERIFIED** | `["0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff"]` | [View Contract](https://hyperion-testnet-explorer.metisdevops.link/address/0xd68a2cCa272c0ABDb3B0A2e6C15Ca86216cFDbe6#code) |
 
 ## Verification Data Files
 All verification data has been saved to the `verification/hyperion/` directory:
@@ -37,6 +38,7 @@ All verification data has been saved to the `verification/hyperion/` directory:
 - `buyvault-verification.json` - BuyVault contract verification data
 - `stakingrewards-verification.json` - StakingRewards contract verification data
 - `bridge-verification.json` - Bridge contract verification data
+- `transactiontracker-verification.json` - TransactionTracker contract verification data
 
 ## Contract Verification Evidence
 
@@ -56,8 +58,8 @@ All contracts are visible and functional on the Hyperion blockchain explorer:
 
 ## Verification Methods Used
 
-### ✅ **Automatic Verification (BuyVault & StakingRewards)**
-The BuyVault and StakingRewards contracts were successfully verified using Hardhat's automatic verification system:
+### ✅ **Automatic Verification (BuyVault, StakingRewards & TransactionTracker)**
+The BuyVault, StakingRewards, and TransactionTracker contracts were successfully verified using Hardhat's automatic verification system:
 
 **BuyVault Verification:**
 ```bash
@@ -79,7 +81,14 @@ npx hardhat verify --network metis-hyperion-testnet \
   "300000000000000000"
 ```
 
-**Result:** ✅ **BOTH SUCCESSFULLY VERIFIED**
+**TransactionTracker Verification:**
+```bash
+npx hardhat verify --network metis-hyperion-testnet \
+  0xd68a2cCa272c0ABDb3B0A2e6C15Ca86216cFDbe6 \
+  "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff"
+```
+
+**Result:** ✅ **ALL THREE SUCCESSFULLY VERIFIED**
 
 ### **Manual Verification Steps (Other Contracts)**
 
