@@ -31,7 +31,7 @@ async function swapDAIToWETH() {
     // Get contract instances
     const dai = await ethers.getContractAt("SimpleERC20", daiAddress);
     const weth = await ethers.getContractAt("SimpleERC20", wethAddress);
-    const amm = await ethers.getContractAt("EnhancedAMM", ammAddress);
+    const amm = await ethers.getContractAt("LiquidityPool", ammAddress);
 
     const swapAmount = ethers.parseUnits(amount.toString(), 18); // DAI has 18 decimals
     const userAddress = await user.getAddress();

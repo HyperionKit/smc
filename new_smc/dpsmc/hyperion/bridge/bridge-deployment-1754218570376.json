@@ -1,0 +1,57 @@
+{
+  "network": "Hyperion Testnet",
+  "chainId": 133717,
+  "bridgeAddress": "0xfF064Fd496256e84b68dAE2509eDA84a3c235550",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "supportedNetworks": [
+    {
+      "chainId": 133713,
+      "name": "Lazchain"
+    },
+    {
+      "chainId": 59902,
+      "name": "Metis Sepolia"
+    }
+  ],
+  "tokenMappings": [
+    {
+      "symbol": "USDT",
+      "decimals": 6,
+      "addresses": {
+        "Hyperion": "0x9b52D326D4866055F6c23297656002992e4293FC",
+        "Lazchain": "0xCc752FaCdF711D338F35D073F44f363CbC624a6c",
+        "Metis Sepolia": "0x88b47706dF760cC4Cd5a13ae36A2809C8adD8898"
+      }
+    },
+    {
+      "symbol": "USDC",
+      "decimals": 6,
+      "addresses": {
+        "Hyperion": "0x31424DB0B7a929283C394b4DA412253Ab6D61682",
+        "Lazchain": "0x77Db75D0bDcE5A03b5c35dDBff1F18dA4161Bc2f",
+        "Metis Sepolia": "0x16d44fBBc8E1F3FBB6ac0674a44EECfa528604DD"
+      }
+    },
+    {
+      "symbol": "DAI",
+      "decimals": 18,
+      "addresses": {
+        "Hyperion": "0xdE896235F5897EC6D13Aa5b43964F9d2d34D82Fb",
+        "Lazchain": "0x3391955a3F863843351eC119cb83958bFa98096c",
+        "Metis Sepolia": "0x23E380def17aAA8554297069422039517B2997b9"
+      }
+    },
+    {
+      "symbol": "WETH",
+      "decimals": 18,
+      "addresses": {
+        "Hyperion": "0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4",
+        "Lazchain": "0x7adF2929085ED1bA7C55c61d738193D62f925Cf3",
+        "Metis Sepolia": "0x1A3d532875aD585776c814E7749a5e7a58b3E49b"
+      }
+    }
+  ],
+  "bridgeFee": "0.001",
+  "withdrawalTimeout": "86400",
+  "deploymentTime": "2025-08-03T10:56:10.374Z"
+}

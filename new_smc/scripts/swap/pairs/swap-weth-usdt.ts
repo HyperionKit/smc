@@ -31,7 +31,7 @@ async function swapWETHToUSDT() {
     // Get contract instances
     const weth = await ethers.getContractAt("SimpleERC20", wethAddress);
     const usdt = await ethers.getContractAt("SimpleERC20", usdtAddress);
-    const amm = await ethers.getContractAt("EnhancedAMM", ammAddress);
+    const amm = await ethers.getContractAt("LiquidityPool", ammAddress);
 
     const swapAmount = ethers.parseUnits(amount.toString(), 18); // WETH has 18 decimals
     const userAddress = await user.getAddress();

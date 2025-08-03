@@ -15,7 +15,7 @@ async function main() {
   // Initialize contracts
   const usdtContract = await ethers.getContractAt("SimpleERC20", USDT_ADDRESS, signer);
   const daiContract = await ethers.getContractAt("SimpleERC20", DAI_ADDRESS, signer);
-  const ammContract = await ethers.getContractAt("EnhancedAMM", AMM_ADDRESS, signer);
+  const ammContract = await ethers.getContractAt("LiquidityPool", AMM_ADDRESS, signer);
 
   try {
     // Get user balances before swap

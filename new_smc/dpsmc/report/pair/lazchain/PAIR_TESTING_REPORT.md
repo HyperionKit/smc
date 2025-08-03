@@ -29,11 +29,11 @@
 ## 🔧 Test Configuration
 
 ### Contract Addresses (Lazchain)
-- **USDT:** `0xCc752FaCdF711D338F35D073F44f363CbC624a6c`
-- **USDC:** `0x77Db75D0bDcE5A03b5c35dDBff1F18dA4161Bc2f`
-- **DAI:** `0x3391955a3F863843351eC119cb83958bFa98096c`
-- **WETH:** `0x7adF2929085ED1bA7C55c61d738193D62f925Cf3`
-- **LiquidityPool:** `0xE07471cbe06bC3Dd3F74001A2EFBEeA1D60f51f8`
+- **USDT:** `0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3` - [View Contract](https://lazai-testnet-explorer.metisdevops.link/address/0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3)
+- **USDC:** `0x677B021cCBA318A93BACB1653fD7bE0882ceE9Fd` - [View Contract](https://lazai-testnet-explorer.metisdevops.link/address/0x677B021cCBA318A93BACB1653fD7bE0882ceE9Fd)
+- **DAI:** `0xeC53e4a54b3AB36fb684966c222Ff6f347C7e84c` - [View Contract](https://lazai-testnet-explorer.metisdevops.link/address/0xeC53e4a54b3AB36fb684966c222Ff6f347C7e84c)
+- **WETH:** `0xef63df9fa0E5f79127AaC0B2a0ec969CC30be532` - [View Contract](https://lazai-testnet-explorer.metisdevops.link/address/0xef63df9fa0E5f79127AaC0B2a0ec969CC30be532)
+- **LiquidityPool:** `0xE07471cbe06bC3Dd3F74001A2EFBEeA1D60f51f8` - [View Contract](https://lazai-testnet-explorer.metisdevops.link/address/0xE07471cbe06bC3Dd3F74001A2EFBEeA1D60f51f8)
 
 ### Test Parameters
 - **Test User:** `0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff`
@@ -96,6 +96,64 @@ npx hardhat run scripts/swap/pairs/swap-dai-weth.ts --network lazchain
 npx hardhat run scripts/test-all-pairs-lazchain.ts --network lazchain
 ```
 
+## 🔍 Contract Verification
+
+### Verification Status
+- **Status**: ⚠️ **Manual Verification Required** (Block explorer API issues)
+- **Network**: Lazchain testnet (Chain ID: 133718)
+- **Explorer**: https://lazai-testnet-explorer.metisdevops.link
+
+### ERC20 Token Verification Commands
+
+#### USDT Token
+```bash
+npx hardhat verify --network lazchain-testnet 0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3 "Tether USD" "USDT" 6 40000000000000
+```
+**Constructor Args**: `["Tether USD", "USDT", 6, 40000000000000]`
+
+#### USDC Token
+```bash
+npx hardhat verify --network lazchain-testnet 0x677B021cCBA318A93BACB1653fD7bE0882ceE9Fd "USD Coin" "USDC" 6 40000000000000
+```
+**Constructor Args**: `["USD Coin", "USDC", 6, 40000000000000]`
+
+#### DAI Token
+```bash
+npx hardhat verify --network lazchain-testnet 0xeC53e4a54b3AB36fb684966c222Ff6f347C7e84c "Dai Stablecoin" "DAI" 18 40000000000000000000000000
+```
+**Constructor Args**: `["Dai Stablecoin", "DAI", 18, 40000000000000000000000000]`
+
+#### WETH Token
+```bash
+npx hardhat verify --network lazchain-testnet 0xef63df9fa0E5f79127AaC0B2a0ec969CC30be532 "Wrapped Ether" "WETH" 18 40000000000000000000000000
+```
+**Constructor Args**: `["Wrapped Ether", "WETH", 18, 40000000000000000000000000]`
+
+#### LiquidityPool Contract
+```bash
+npx hardhat verify --network lazchain-testnet 0xE07471cbe06bC3Dd3F74001A2EFBEeA1D60f51f8
+```
+**Constructor Args**: `[]` (No arguments required)
+
+### Manual Verification Steps
+1. **Visit Block Explorer**: https://lazai-testnet-explorer.metisdevops.link
+2. **Navigate to Contract**: Click on the contract address link above
+3. **Click "Verify Contract"**: Use the manual verification feature
+4. **Upload Source Code**: 
+   - For tokens: `contracts/token/SimpleERC20.sol`
+   - For LiquidityPool: `contracts/swap/Swap.sol`
+5. **Set Compiler Settings**:
+   - **Version**: 0.8.28
+   - **Optimization**: Enabled (200 runs)
+   - **ViaIR**: Enabled
+6. **Enter Constructor Arguments**: As shown above
+7. **Submit Verification**
+
+### Verification Issues
+- **Block Explorer API**: Returns HTML instead of JSON (infrastructure issue)
+- **Sourcify**: Doesn't support chain ID 133718
+- **Network Support**: Contact Lazchain team for API fixes
+
 ## 📞 Support
 
 If you encounter any issues:
@@ -103,6 +161,7 @@ If you encounter any issues:
 2. Verify token balances before and after swaps
 3. Ensure sufficient token approvals
 4. Check gas fees and network status
+5. For verification issues, use manual verification process
 
 ---
 

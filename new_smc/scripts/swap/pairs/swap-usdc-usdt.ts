@@ -31,7 +31,7 @@ async function swapUSDCToUSDT() {
     // Get contract instances
     const usdc = await ethers.getContractAt("SimpleERC20", usdcAddress);
     const usdt = await ethers.getContractAt("SimpleERC20", usdtAddress);
-    const amm = await ethers.getContractAt("EnhancedAMM", ammAddress);
+    const amm = await ethers.getContractAt("LiquidityPool", ammAddress);
 
     const swapAmount = ethers.parseUnits(amount.toString(), 6); // USDC has 6 decimals
     const userAddress = await user.getAddress();

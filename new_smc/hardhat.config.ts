@@ -9,7 +9,7 @@ dotenv.config();
 
 const config: HardhatUserConfig = {
   sourcify: {
-    enabled: true
+    enabled: false
   },
   solidity: {
     version: "0.8.28",
@@ -49,6 +49,14 @@ const config: HardhatUserConfig = {
       gas: 8000000, // Higher gas limit
       timeout: 120000, // 2 minutes timeout
     },
+    "lazchain-testnet": {
+      url: process.env.LAZCHAIN_RPC_URL || "https://lazai-testnet.metisdevops.link",
+      chainId: 133718,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 1000000000, // 1 gwei
+      gas: 8000000, // Higher gas limit
+      timeout: 120000, // 2 minutes timeout
+    },
     metisSepolia: {
       url: process.env.METISSEPOLIA_RPC_URL || "https://metis-sepolia-rpc.publicnode.com",
       chainId: 59902,
@@ -63,7 +71,9 @@ const config: HardhatUserConfig = {
       hyperion: process.env.ETHERSCAN_API_KEY || "dummy-key",
       "metis-hyperion-testnet": "empty",
       lazchain: process.env.ETHERSCAN_API_KEY || "dummy-key",
+      "lazchain-testnet": process.env.ETHERSCAN_API_KEY || "dummy-key",
       metisSepolia: process.env.ETHERSCAN_API_KEY || "dummy-key",
+      "metisSepolia-testnet": process.env.ETHERSCAN_API_KEY || "dummy-key",
     },
     customChains: [
       {
@@ -91,7 +101,23 @@ const config: HardhatUserConfig = {
         }
       },
       {
+        network: "lazchain-testnet",
+        chainId: 133718,
+        urls: {
+          apiURL: "https://lazai-testnet-explorer.metisdevops.link/api",
+          browserURL: "https://lazai-testnet-explorer.metisdevops.link"
+        }
+      },
+      {
         network: "metisSepolia",
+        chainId: 59902,
+        urls: {
+          apiURL: "https://sepolia.explorer.metis.io/api",
+          browserURL: "https://sepolia.explorer.metis.io"
+        }
+      },
+      {
+        network: "metisSepolia-testnet",
         chainId: 59902,
         urls: {
           apiURL: "https://sepolia.explorer.metis.io/api",

@@ -8,7 +8,7 @@ async function main() {
   console.log("Account balance:", ethers.formatEther(balance));
 
   // Deploy USDT (6 decimals)
-  const USDT = await ethers.getContractFactory("contracts/SimpleERC20.sol:SimpleERC20");
+  const USDT = await ethers.getContractFactory("SimpleERC20");
   const usdt = await USDT.deploy(
     "Tether USD",
     "USDT",
@@ -19,7 +19,7 @@ async function main() {
   console.log("USDT deployed to:", await usdt.getAddress());
 
   // Deploy USDC (6 decimals)
-  const USDC = await ethers.getContractFactory("contracts/SimpleERC20.sol:SimpleERC20");
+  const USDC = await ethers.getContractFactory("SimpleERC20");
   const usdc = await USDC.deploy(
     "USD Coin",
     "USDC",
@@ -30,7 +30,7 @@ async function main() {
   console.log("USDC deployed to:", await usdc.getAddress());
 
   // Deploy DAI (18 decimals)
-  const DAI = await ethers.getContractFactory("contracts/SimpleERC20.sol:SimpleERC20");
+  const DAI = await ethers.getContractFactory("SimpleERC20");
   const dai = await DAI.deploy(
     "Dai Stablecoin",
     "DAI",
@@ -41,7 +41,7 @@ async function main() {
   console.log("DAI deployed to:", await dai.getAddress());
 
   // Deploy WETH (18 decimals)
-  const WETH = await ethers.getContractFactory("contracts/SimpleERC20.sol:SimpleERC20");
+  const WETH = await ethers.getContractFactory("SimpleERC20");
   const weth = await WETH.deploy(
     "Wrapped Ether",
     "WETH",
