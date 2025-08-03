@@ -1,88 +1,33 @@
 {
-  "totalValueTransferred": "1250383.90",
-  "totalTransactions": 1237,
-  "lastUpdateTime": "2025-08-03T14:45:51.222Z",
+  "totalValueTransferred": "0.0",
+  "totalTransactions": 0,
+  "lastUpdateTime": "2025-08-03T15:50:03.880Z",
   "contractStats": {
     "swap": {
-      "totalValue": "500000.00",
-      "totalTransactions": 500,
-      "lastTransaction": "2025-08-03T14:40:45.194Z"
+      "totalValue": "0.0",
+      "totalTransactions": 0,
+      "lastTransaction": "1970-01-01T00:00:00.000Z"
     },
     "buy": {
-      "totalValue": "300000.00",
-      "totalTransactions": 300,
-      "lastTransaction": "2025-08-03T14:35:45.194Z"
+      "totalValue": "0.0",
+      "totalTransactions": 0,
+      "lastTransaction": "1970-01-01T00:00:00.000Z"
     },
     "stake": {
-      "totalValue": "205165.45",
-      "totalTransactions": 201,
-      "lastTransaction": "2025-08-03T14:45:49.214Z"
+      "totalValue": "0.0",
+      "totalTransactions": 0,
+      "lastTransaction": "1970-01-01T00:00:00.000Z"
     },
     "bridge": {
-      "totalValue": "160650.56",
-      "totalTransactions": 152,
-      "lastTransaction": "2025-08-03T14:45:51.222Z"
+      "totalValue": "0.0",
+      "totalTransactions": 0,
+      "lastTransaction": "1970-01-01T00:00:00.000Z"
     },
     "faucet": {
-      "totalValue": "84567.89",
-      "totalTransactions": 84,
-      "lastTransaction": "2025-08-03T14:20:45.194Z"
+      "totalValue": "0.0",
+      "totalTransactions": 0,
+      "lastTransaction": "1970-01-01T00:00:00.000Z"
     }
   },
-  "recentTransactions": [
-    {
-      "user": "0xcc966af866acd",
-      "contractType": "bridge",
-      "tokenSymbol": "DAI",
-      "amount": "573.07",
-      "valueUSD": "2231.03",
-      "timestamp": "2025-08-03T14:45:51.222Z",
-      "txHash": "0x104bcf77c48f3"
-    },
-    {
-      "user": "0x06fda9c8e7d3",
-      "contractType": "stake",
-      "tokenSymbol": "USDC",
-      "amount": "275.80",
-      "valueUSD": "5165.45",
-      "timestamp": "2025-08-03T14:45:49.214Z",
-      "txHash": "0x34992dec7c4d1"
-    },
-    {
-      "user": "0x39ea9f18e708d",
-      "contractType": "bridge",
-      "tokenSymbol": "DAI",
-      "amount": "637.29",
-      "valueUSD": "8419.53",
-      "timestamp": "2025-08-03T14:45:47.203Z",
-      "txHash": "0x3504028357318"
-    },
-    {
-      "user": "0x1234567890123456789012345678901234567890",
-      "contractType": "swap",
-      "tokenSymbol": "USDT",
-      "amount": "100.00",
-      "valueUSD": "100.00",
-      "timestamp": "2025-08-03T14:40:45.194Z",
-      "txHash": "0x1234567890123456789012345678901234567890123456789012345678901234"
-    },
-    {
-      "user": "0x2345678901234567890123456789012345678901",
-      "contractType": "buy",
-      "tokenSymbol": "USDC",
-      "amount": "50.00",
-      "valueUSD": "50.00",
-      "timestamp": "2025-08-03T14:35:45.194Z",
-      "txHash": "0x2345678901234567890123456789012345678901234567890123456789012345"
-    },
-    {
-      "user": "0x3456789012345678901234567890123456789012",
-      "contractType": "stake",
-      "tokenSymbol": "DAI",
-      "amount": "75.00",
-      "valueUSD": "75.00",
-      "timestamp": "2025-08-03T14:30:45.194Z",
-      "txHash": "0x3456789012345678901234567890123456789012345678901234567890123456"
-    }
-  ]
+  "recentTransactions": []
 }
