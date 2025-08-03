@@ -305,12 +305,14 @@ METIS_SEPOLIA_RPC_URL=your_metis_sepolia_rpc_url
 
 ## 🔒 Security Features
 
-- **Reentrancy Protection**: All critical functions protected
+- **Reentrancy Protection**: All critical functions protected with `nonReentrant` modifier
 - **Ownable Access Control**: Admin functions restricted to owner
 - **Emergency Pause**: Ability to pause all operations
 - **Fee Limits**: Maximum 10% trading fee
 - **Input Validation**: Comprehensive parameter validation
 - **Safe Math**: Built-in overflow protection (Solidity 0.8.28)
+- **Slippage Protection**: Minimum amount guarantees for swaps and purchases
+- **Time-based Rewards**: Secure reward calculation based on staking duration
 
 ## 📈 Initial Setup
 
@@ -318,6 +320,17 @@ After deployment, each pair will have:
 - **1,000,000 tokens** of initial liquidity
 - **0.3% trading fee**
 - **Full trading functionality**
+
+### Staking Setup
+- **Reward Rate**: 0.3 USDC per second (configurable)
+- **Staking Token**: USDT
+- **Reward Token**: USDC
+- **Initial Funding**: 51,840 USDC for rewards
+
+### BuyVault Setup
+- **USDC Price**: 0.00001 METIS per USDC
+- **USDT Price**: 0.00001 METIS per USDT
+- **Initial Funding**: 1,000,000 USDC and USDT
 
 ## 🎯 Usage Examples
 
@@ -398,9 +411,10 @@ await buyVault.buyUSDC(usdcAmount * 95n / 100n); // 5% slippage tolerance
 ### Common Issues
 
 1. **Insufficient Balance**: Ensure you have enough tokens and native currency for gas
-2. **Approval Required**: Always approve tokens before adding liquidity or swapping
+2. **Approval Required**: Always approve tokens before adding liquidity, swapping, or staking
 3. **Slippage Protection**: Set appropriate minimum amounts to avoid failed transactions
 4. **Network Issues**: Verify RPC URLs and network configurations
+5. **Staking Requirements**: Ensure you have sufficient USDT balance before staking
 
 ### Error Messages
 
@@ -408,6 +422,8 @@ await buyVault.buyUSDC(usdcAmount * 95n / 100n); // 5% slippage tolerance
 - `"Insufficient liquidity"`: Add more liquidity to the pair
 - `"Insufficient output amount"`: Increase slippage tolerance or reduce swap amount
 - `"Contract is paused"`: Wait for admin to unpause or contact support
+- `"Amount must be greater than zero"`: Ensure staking amount is positive
+- `"Insufficient staked balance"`: Check your staked balance before unstaking
 
 ## 📞 Support
 
@@ -416,6 +432,23 @@ For issues and questions:
 2. Review contract documentation
 3. Open an issue in the repository
 
+## 🚀 Quick Start Commands
+
+### Hyperion Testnet (Fully Deployed)
+```bash
+# Test staking functionality
+npx hardhat run scripts/stake/test-staking.ts --network metis-hyperion-testnet
+
+# Test unstaking and claiming rewards
+npx hardhat run scripts/stake/unstake-and-claim.ts --network metis-hyperion-testnet
+
+# Buy USDC with METIS
+npx hardhat run scripts/buy/buy-usdc-with-metis.ts --network metis-hyperion-testnet
+
+# Test all trading pairs
+npx hardhat run scripts/swap/pairs/swap-usdt-usdc.ts --network metis-hyperion-testnet
+```
+
 ## 📄 License
 
 MIT License - see LICENSE file for details
@@ -423,3 +456,11 @@ MIT License - see LICENSE file for details
 ---
 
 **⚠️ Disclaimer**: This is experimental software. Use at your own risk. Always test thoroughly on testnets before mainnet deployment.
+
+## 🎉 **Current Status: FULLY OPERATIONAL**
+
+All contracts are deployed, verified, and tested on Hyperion testnet:
+- ✅ **Liquidity Pool**: 12/12 trading pairs operational
+- ✅ **Staking System**: USDT → USDC rewards working
+- ✅ **BuyVault**: METIS → USDC/USDT conversion working
+- ✅ **All Contracts Verified**: On Hyperion blockchain explorer
