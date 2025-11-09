@@ -1,0 +1,33 @@
+{
+  "totalValueTransferred": "0.0",
+  "totalTransactions": 0,
+  "lastUpdateTime": "2025-08-03T15:50:03.880Z",
+  "contractStats": {
+    "swap": {
+      "totalValue": "0.0",
+      "totalTransactions": 0,
+      "lastTransaction": "1970-01-01T00:00:00.000Z"
+    },
+    "buy": {
+      "totalValue": "0.0",
+      "totalTransactions": 0,
+      "lastTransaction": "1970-01-01T00:00:00.000Z"
+    },
+    "stake": {
+      "totalValue": "0.0",
+      "totalTransactions": 0,
+      "lastTransaction": "1970-01-01T00:00:00.000Z"
+    },
+    "bridge": {
+      "totalValue": "0.0",
+      "totalTransactions": 0,
+      "lastTransaction": "1970-01-01T00:00:00.000Z"
+    },
+    "faucet": {
+      "totalValue": "0.0",
+      "totalTransactions": 0,
+      "lastTransaction": "1970-01-01T00:00:00.000Z"
+    }
+  },
+  "recentTransactions": []
+}
