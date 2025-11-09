@@ -72,8 +72,7 @@
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd new_smc
+   git clone https://github.com/HyperionKit/smc
    ```
 
 2. **Install dependencies**
