@@ -53,7 +53,7 @@ All 6 trading pairs have been created and initialized with 1,000,000 tokens of l
 
 1. **Verify Contracts** on Mantle block explorer
 2. **Deploy Additional Contracts:**
-   - ✅ BuyVault (for METIS → USDC/USDT purchases) - **DEPLOYED**
+   - ✅ BuyVault (for MNT → USDC/USDT purchases) - **DEPLOYED**
    - ✅ StakingRewards (for USDT staking → USDC rewards) - **DEPLOYED**
    - Bridge (for cross-chain transfers)
    - Faucet (for test token distribution)
