@@ -8,7 +8,16 @@
     "test": "hardhat test",
     "coverage": "hardhat coverage",
     "flatten": "truffle-flattener contracts/AMM.sol > flattened/EnhancedAMM.sol",
-    "test:complete": "hardhat test test/CompleteDeFi.test.ts"
+    "test:complete": "hardhat test test/CompleteDeFi.test.ts",
+    "commit": "node scripts/version/parallel-commit.js",
+    "commit:dry": "node scripts/version/parallel-commit.js --dry-run",
+    "commit:sh": "bash scripts/version/parallel-commit.sh",
+    "commit:sh:dry": "bash scripts/version/parallel-commit.sh --dry-run",
+    "commit:all": "git add -A && git commit -m \"chore: update all changes\"",
+    "commit:auto": "bash scripts/version/parallel-commit.sh --max 3",
+    "status": "git status",
+    "changes": "git status --porcelain",
+    "staged": "git diff --cached --name-only"
   },
   "keywords": [
     "defi",

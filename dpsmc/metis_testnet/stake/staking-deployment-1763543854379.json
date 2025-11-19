@@ -1,0 +1,13 @@
+{
+  "network": "Metis Sepolia Testnet",
+  "chainId": 59902,
+  "stakingRewardsAddress": "0xCfaf530E5c6568D3953DfFcB2363Ae4F77332afa",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "configuration": {
+    "stakingToken": "0x88b47706dF760cC4Cd5a13ae36A2809C8adD8898",
+    "rewardToken": "0x16d44fBBc8E1F3FBB6ac0674a44EECfa528604DD",
+    "ammAddress": "0x5AC81bC04fc19871E103667ee4b3f0B77b960D7d",
+    "rewardRate": "0.3"
+  },
+  "deploymentTime": "2025-11-19T09:17:34.378Z"
+}

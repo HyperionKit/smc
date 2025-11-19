@@ -1,0 +1,15 @@
+{
+  "network": "Lazchain Testnet",
+  "chainId": 133718,
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "transactionTracker": "0x815BF4455296f9F52Cf4cE5B5B4A1c7D615f6152",
+  "contracts": {
+    "LiquidityPool": "0xE07471cbe06bC3Dd3F74001A2EFBEeA1D60f51f8",
+    "BuyVault": "0x66d12d47034F8D6221586e32bac8bE6819467E07",
+    "StakingRewards": "0x84d0A880C970A53154D4d6B25E3825046D677603",
+    "Bridge": "0xf2D33cF11d102F94148c38f943C99408f7C898cf",
+    "Faucet": "0x04107Dd22f966aB3f9A130798FEc45602476F6a5"
+  },
+  "deploymentTime": "2025-11-19T09:33:05.164Z",
+  "blockNumber": 14817099
+}

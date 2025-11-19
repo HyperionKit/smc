@@ -1,0 +1,51 @@
+{
+  "network": "Lazchain Testnet",
+  "chainId": 133718,
+  "faucetAddress": "0x04107Dd22f966aB3f9A130798FEc45602476F6a5",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "dripInterval": "86400",
+  "maxDripsPerUser": "100",
+  "supportedTokens": [
+    {
+      "symbol": "USDT",
+      "address": "0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3",
+      "config": {
+        "symbol": "USDT",
+        "decimals": 6,
+        "dripAmount": "1000000000",
+        "maxBalance": "10000000000"
+      }
+    },
+    {
+      "symbol": "USDC",
+      "address": "0x677B021cCBA318A93BACB1653fD7bE0882ceE9Fd",
+      "config": {
+        "symbol": "USDC",
+        "decimals": 6,
+        "dripAmount": "1000000000",
+        "maxBalance": "10000000000"
+      }
+    },
+    {
+      "symbol": "DAI",
+      "address": "0xeC53e4a54b3AB36fb684966c222Ff6f347C7e84c",
+      "config": {
+        "symbol": "DAI",
+        "decimals": 18,
+        "dripAmount": "1000000000000000000000",
+        "maxBalance": "10000000000000000000000"
+      }
+    },
+    {
+      "symbol": "WETH",
+      "address": "0xef63df9fa0E5f79127AaC0B2a0ec969CC30be532",
+      "config": {
+        "symbol": "WETH",
+        "decimals": 18,
+        "dripAmount": "1000000000000000000",
+        "maxBalance": "10000000000000000000"
+      }
+    }
+  ],
+  "deploymentTime": "2025-11-19T09:30:50.416Z"
+}

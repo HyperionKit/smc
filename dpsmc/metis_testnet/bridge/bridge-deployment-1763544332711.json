@@ -1,0 +1,73 @@
+{
+  "network": "Metis Sepolia",
+  "chainId": 59902,
+  "bridgeAddress": "0x1AC16E6C537438c82A61A106B876Ef69C7e247d2",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "supportedNetworks": [
+    {
+      "chainId": 59902,
+      "name": "Metis Sepolia"
+    },
+    {
+      "chainId": 133717,
+      "name": "Hyperion"
+    },
+    {
+      "chainId": 5003,
+      "name": "Mantle Testnet"
+    },
+    {
+      "chainId": 5000,
+      "name": "Mantle Mainnet"
+    },
+    {
+      "chainId": 133718,
+      "name": "Lazchain"
+    }
+  ],
+  "tokenMappings": [
+    {
+      "symbol": "USDT",
+      "decimals": 6,
+      "addresses": {
+        "Metis Sepolia": "0x88b47706dF760cC4Cd5a13ae36A2809C8adD8898",
+        "Hyperion": "0x9b52D326D4866055F6c23297656002992e4293FC",
+        "Mantle Testnet": "0x0000000000000000000000000000000000000000",
+        "Lazchain": "0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3"
+      }
+    },
+    {
+      "symbol": "USDC",
+      "decimals": 6,
+      "addresses": {
+        "Metis Sepolia": "0x16d44fBBc8E1F3FBB6ac0674a44EECfa528604DD",
+        "Hyperion": "0x31424DB0B7a929283C394b4DA412253Ab6D61682",
+        "Mantle Testnet": "0x0000000000000000000000000000000000000000",
+        "Lazchain": "0x677B021cCBA318A93BACB1653fD7bE0882ceE9Fd"
+      }
+    },
+    {
+      "symbol": "DAI",
+      "decimals": 18,
+      "addresses": {
+        "Metis Sepolia": "0x23E380def17aAA8554297069422039517B2997b9",
+        "Hyperion": "0xdE896235F5897EC6D13Aa5b43964F9d2d34D82Fb",
+        "Mantle Testnet": "0x0000000000000000000000000000000000000000",
+        "Lazchain": "0xeC53e4a54b3AB36fb684966c222Ff6f347C7e84c"
+      }
+    },
+    {
+      "symbol": "WETH",
+      "decimals": 18,
+      "addresses": {
+        "Metis Sepolia": "0x1A3d532875aD585776c814E7749a5e7a58b3E49b",
+        "Hyperion": "0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4",
+        "Mantle Testnet": "0x0000000000000000000000000000000000000000",
+        "Lazchain": "0xef63df9fa0E5f79127AaC0B2a0ec969CC30be532"
+      }
+    }
+  ],
+  "bridgeFee": "0.001",
+  "withdrawalTimeout": "86400",
+  "deploymentTime": "2025-11-19T09:25:32.710Z"
+}

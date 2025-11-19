@@ -49,6 +49,47 @@ All 6 trading pairs have been created and initialized with 1,000,000 tokens of l
 - [BuyVault](https://sepolia.mantlescan.xyz/address/0x1E0B86323fdFFa099AAEeE9B3C8B2f8C6E20fFa5)
 - [StakingRewards](https://sepolia.mantlescan.xyz/address/0x1a80Db4cf9E26BafCf672c534Ab219630fFE1A5E)
 
+## 🌉 Bridge Compatibility
+
+### Compatible Networks
+
+If a Bridge contract is deployed on Mantle Testnet, it will be compatible with the following networks:
+
+- ✅ **Hyperion Testnet** (Chain ID: 133717) — Recommended
+- ✅ **Mantle Mainnet** (Chain ID: 5000) — Recommended
+- ✅ **Lazchain Testnet** (Chain ID: 133718) — If re-enabled
+- ✅ **Metis Sepolia Testnet** (Chain ID: 59902) — If re-enabled
+
+### Token Mappings
+
+The bridge supports cross-chain transfers for the following tokens across all compatible networks:
+
+| Token | Symbol | Decimals | Mantle Testnet Address |
+|-------|--------|----------|----------------------|
+| Tether USD | USDT | 6 | `0x6aE086fB835D53D7fae1B57Cc8A55FEEaEC6ba5b` |
+| USD Coin | USDC | 6 | `0x76837E513b3e6E6eFc828757764Ed5d0Fd24f2dE` |
+| Dai Stablecoin | DAI | 18 | `0xd6Ff774460085767e2c6b3DabcA5AE3D5a57e27a` |
+| Wrapped Ether | WETH | 18 | `0xCa7b49d1C243a9289aE2316051eb15146125914d` |
+
+### Cross-Chain Transfer Capabilities
+
+Once the Bridge is deployed on Mantle Testnet, users will be able to:
+- Deposit tokens on Mantle Testnet and withdraw on Hyperion, Mantle Mainnet, Lazchain, or Metis Sepolia
+- Deposit tokens on any compatible network and withdraw on Mantle Testnet
+- Transfer tokens between any two compatible networks via Mantle Testnet as an intermediary
+
+### Bridge Deployment
+
+To deploy the bridge on Mantle Testnet:
+```bash
+npx hardhat run scripts/bridge/deploy-bridge-contract.ts --network mantle-testnet
+```
+
+The bridge will automatically configure:
+- Supported networks (Hyperion, Mantle Mainnet, Lazchain, Metis Sepolia)
+- Token mappings for all 4 tokens across all networks
+- Relayer configuration (deployer address as initial relayer)
+
 ## 📝 Next Steps
 
 1. **Verify Contracts** on Mantle block explorer

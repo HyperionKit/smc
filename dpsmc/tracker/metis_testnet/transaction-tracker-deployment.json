@@ -1,0 +1,15 @@
+{
+  "network": "Metis Sepolia Testnet",
+  "chainId": 59902,
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "transactionTracker": "0x3A9f855553050b5A2cfbeC92E2AF4a891a4B3885",
+  "contracts": {
+    "LiquidityPool": "0x5AC81bC04fc19871E103667ee4b3f0B77b960D7d",
+    "BuyVault": "0xf3d5C21e02943539364A3A4dd2Cba88408024A5f",
+    "StakingRewards": "0xCfaf530E5c6568D3953DfFcB2363Ae4F77332afa",
+    "Bridge": "0x1AC16E6C537438c82A61A106B876Ef69C7e247d2",
+    "Faucet": "0x50888Ced4d0BCcB1CD7494245716Ac005A42a8D9"
+  },
+  "deploymentTime": "2025-11-19T09:26:44.296Z",
+  "blockNumber": 7458778
+}

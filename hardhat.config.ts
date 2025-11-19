@@ -41,31 +41,40 @@ const config: HardhatUserConfig = {
       gas: 8000000, // Higher gas limit
       timeout: 120000, // 2 minutes timeout
     },
-    // Temporarily disabled networks
-    // lazchain: {
-    //   url: process.env.LAZCHAIN_RPC_URL || "https://lazai-testnet.metisdevops.link",
-    //   chainId: 133718,
-    //   accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
-    //   gasPrice: 1000000000, // 1 gwei
-    //   gas: 8000000, // Higher gas limit
-    //   timeout: 120000, // 2 minutes timeout
-    // },
-    // "lazchain-testnet": {
-    //   url: process.env.LAZCHAIN_RPC_URL || "https://lazai-testnet.metisdevops.link",
-    //   chainId: 133718,
-    //   accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
-    //   gasPrice: 1000000000, // 1 gwei
-    //   gas: 8000000, // Higher gas limit
-    //   timeout: 120000, // 2 minutes timeout
-    // },
-    // metisSepolia: {
-    //   url: process.env.METISSEPOLIA_RPC_URL || "https://metis-sepolia-rpc.publicnode.com",
-    //   chainId: 59902,
-    //   accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
-    //   gasPrice: 1000000000, // 1 gwei
-    //   gas: 8000000, // Higher gas limit
-    //   timeout: 120000, // 2 minutes timeout
-    // },
+    // Lazchain Network
+    lazchain: {
+      url: process.env.LAZCHAIN_RPC_URL || "https://testnet.lazai.network",
+      chainId: 133718,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 1000000000, // 1 gwei
+      gas: 8000000, // Higher gas limit
+      timeout: 120000, // 2 minutes timeout
+    },
+    "lazchain-testnet": {
+      url: process.env.LAZCHAIN_RPC_URL || "https://testnet.lazai.network",
+      chainId: 133718,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 1000000000, // 1 gwei
+      gas: 8000000, // Higher gas limit
+      timeout: 120000, // 2 minutes timeout
+    },
+    // Metis Sepolia Network
+    metisSepolia: {
+      url: process.env.METISSEPOLIA_RPC_URL || "https://metis-sepolia-rpc.publicnode.com",
+      chainId: 59902,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 1000000000, // 1 gwei
+      gas: 8000000, // Higher gas limit
+      timeout: 120000, // 2 minutes timeout
+    },
+    "metis-sepolia-testnet": {
+      url: process.env.METISSEPOLIA_RPC_URL || "https://metis-sepolia-rpc.publicnode.com",
+      chainId: 59902,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 1000000000, // 1 gwei
+      gas: 8000000, // Higher gas limit
+      timeout: 120000, // 2 minutes timeout
+    },
     // Mantle Networks
     mantleTestnet: {
       url: process.env.MANTLE_TESTNET_RPC_URL || "https://rpc.sepolia.mantle.xyz",
@@ -96,11 +105,11 @@ const config: HardhatUserConfig = {
     apiKey: {
       hyperion: process.env.ETHERSCAN_API_KEY || "dummy-key",
       "metis-hyperion-testnet": "empty",
-      // Temporarily disabled networks
-      // lazchain: process.env.ETHERSCAN_API_KEY || "dummy-key",
-      // "lazchain-testnet": process.env.ETHERSCAN_API_KEY || "dummy-key",
-      // metisSepolia: process.env.ETHERSCAN_API_KEY || "dummy-key",
-      // "metisSepolia-testnet": process.env.ETHERSCAN_API_KEY || "dummy-key",
+      // Lazchain and Metis Sepolia networks
+      lazchain: process.env.ETHERSCAN_API_KEY || "dummy-key",
+      "lazchain-testnet": process.env.ETHERSCAN_API_KEY || "dummy-key",
+      metisSepolia: process.env.ETHERSCAN_API_KEY || "dummy-key",
+      "metis-sepolia-testnet": process.env.ETHERSCAN_API_KEY || "dummy-key",
       // Mantle networks
       mantleTestnet: process.env.ETHERSCAN_API_KEY || "dummy-key",
       "mantle-testnet": process.env.ETHERSCAN_API_KEY || "dummy-key",
@@ -123,39 +132,40 @@ const config: HardhatUserConfig = {
           browserURL: "https://hyperion-testnet-explorer.metisdevops.link"
         }
       },
-      // Temporarily disabled networks
-      // {
-      //   network: "lazchain",
-      //   chainId: 133718,
-      //   urls: {
-      //     apiURL: "https://explorer.lazai-testnet.metisdevops.link/api",
-      //     browserURL: "https://explorer.lazai-testnet.metisdevops.link"
-      //   }
-      // },
-      // {
-      //   network: "lazchain-testnet",
-      //   chainId: 133718,
-      //   urls: {
-      //     apiURL: "https://lazai-testnet-explorer.metisdevops.link/api",
-      //     browserURL: "https://lazai-testnet-explorer.metisdevops.link"
-      //   }
-      // },
-      // {
-      //   network: "metisSepolia",
-      //   chainId: 59902,
-      //   urls: {
-      //     apiURL: "https://sepolia.explorer.metis.io/api",
-      //     browserURL: "https://sepolia.explorer.metis.io"
-      //   }
-      // },
-      // {
-      //   network: "metisSepolia-testnet",
-      //   chainId: 59902,
-      //   urls: {
-      //     apiURL: "https://sepolia.explorer.metis.io/api",
-      //     browserURL: "https://sepolia.explorer.metis.io"
-      //   }
-      // },
+      // Lazchain networks
+      {
+        network: "lazchain",
+        chainId: 133718,
+        urls: {
+          apiURL: "https://testnet-explorer.lazai.network/api",
+          browserURL: "https://testnet-explorer.lazai.network"
+        }
+      },
+      {
+        network: "lazchain-testnet",
+        chainId: 133718,
+        urls: {
+          apiURL: "https://testnet-explorer.lazai.network/api",
+          browserURL: "https://testnet-explorer.lazai.network"
+        }
+      },
+      // Metis Sepolia networks
+      {
+        network: "metisSepolia",
+        chainId: 59902,
+        urls: {
+          apiURL: "https://sepolia.explorer.metis.io/api",
+          browserURL: "https://sepolia.explorer.metis.io"
+        }
+      },
+      {
+        network: "metis-sepolia-testnet",
+        chainId: 59902,
+        urls: {
+          apiURL: "https://sepolia.explorer.metis.io/api",
+          browserURL: "https://sepolia.explorer.metis.io"
+        }
+      },
       // Mantle networks
       {
         network: "mantleTestnet",

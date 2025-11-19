@@ -1,12 +1,24 @@
 {
-  "network": "Hyperion Testnet",
-  "chainId": 133717,
-  "bridgeAddress": "0xfF064Fd496256e84b68dAE2509eDA84a3c235550",
+  "network": "Lazchain",
+  "chainId": 133718,
+  "bridgeAddress": "0xf2D33cF11d102F94148c38f943C99408f7C898cf",
   "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
   "supportedNetworks": [
     {
-      "chainId": 133713,
+      "chainId": 133718,
       "name": "Lazchain"
+    },
+    {
+      "chainId": 133717,
+      "name": "Hyperion"
+    },
+    {
+      "chainId": 5003,
+      "name": "Mantle Testnet"
+    },
+    {
+      "chainId": 5000,
+      "name": "Mantle Mainnet"
     },
     {
       "chainId": 59902,
@@ -18,8 +30,9 @@
       "symbol": "USDT",
       "decimals": 6,
       "addresses": {
+        "Lazchain": "0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3",
         "Hyperion": "0x9b52D326D4866055F6c23297656002992e4293FC",
-        "Lazchain": "0xCc752FaCdF711D338F35D073F44f363CbC624a6c",
+        "Mantle Testnet": "0x0000000000000000000000000000000000000000",
         "Metis Sepolia": "0x88b47706dF760cC4Cd5a13ae36A2809C8adD8898"
       }
     },
@@ -27,8 +40,9 @@
       "symbol": "USDC",
       "decimals": 6,
       "addresses": {
+        "Lazchain": "0x677B021cCBA318A93BACB1653fD7bE0882ceE9Fd",
         "Hyperion": "0x31424DB0B7a929283C394b4DA412253Ab6D61682",
-        "Lazchain": "0x77Db75D0bDcE5A03b5c35dDBff1F18dA4161Bc2f",
+        "Mantle Testnet": "0x0000000000000000000000000000000000000000",
         "Metis Sepolia": "0x16d44fBBc8E1F3FBB6ac0674a44EECfa528604DD"
       }
     },
@@ -36,8 +50,9 @@
       "symbol": "DAI",
       "decimals": 18,
       "addresses": {
+        "Lazchain": "0xeC53e4a54b3AB36fb684966c222Ff6f347C7e84c",
         "Hyperion": "0xdE896235F5897EC6D13Aa5b43964F9d2d34D82Fb",
-        "Lazchain": "0x3391955a3F863843351eC119cb83958bFa98096c",
+        "Mantle Testnet": "0x0000000000000000000000000000000000000000",
         "Metis Sepolia": "0x23E380def17aAA8554297069422039517B2997b9"
       }
     },
@@ -45,13 +60,14 @@
       "symbol": "WETH",
       "decimals": 18,
       "addresses": {
+        "Lazchain": "0xef63df9fa0E5f79127AaC0B2a0ec969CC30be532",
         "Hyperion": "0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4",
-        "Lazchain": "0x7adF2929085ED1bA7C55c61d738193D62f925Cf3",
+        "Mantle Testnet": "0x0000000000000000000000000000000000000000",
         "Metis Sepolia": "0x1A3d532875aD585776c814E7749a5e7a58b3E49b"
       }
     }
   ],
   "bridgeFee": "0.001",
   "withdrawalTimeout": "86400",
-  "deploymentTime": "2025-08-03T10:56:10.374Z"
+  "deploymentTime": "2025-11-19T09:32:18.321Z"
 }

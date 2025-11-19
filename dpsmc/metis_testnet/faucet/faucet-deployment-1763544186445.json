@@ -1,0 +1,51 @@
+{
+  "network": "Metis Sepolia Testnet",
+  "chainId": 59902,
+  "faucetAddress": "0x50888Ced4d0BCcB1CD7494245716Ac005A42a8D9",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "dripInterval": "86400",
+  "maxDripsPerUser": "100",
+  "supportedTokens": [
+    {
+      "symbol": "USDT",
+      "address": "0x88b47706dF760cC4Cd5a13ae36A2809C8adD8898",
+      "config": {
+        "symbol": "USDT",
+        "decimals": 6,
+        "dripAmount": "1000000000",
+        "maxBalance": "10000000000"
+      }
+    },
+    {
+      "symbol": "USDC",
+      "address": "0x16d44fBBc8E1F3FBB6ac0674a44EECfa528604DD",
+      "config": {
+        "symbol": "USDC",
+        "decimals": 6,
+        "dripAmount": "1000000000",
+        "maxBalance": "10000000000"
+      }
+    },
+    {
+      "symbol": "DAI",
+      "address": "0x23E380def17aAA8554297069422039517B2997b9",
+      "config": {
+        "symbol": "DAI",
+        "decimals": 18,
+        "dripAmount": "1000000000000000000000",
+        "maxBalance": "10000000000000000000000"
+      }
+    },
+    {
+      "symbol": "WETH",
+      "address": "0x1A3d532875aD585776c814E7749a5e7a58b3E49b",
+      "config": {
+        "symbol": "WETH",
+        "decimals": 18,
+        "dripAmount": "1000000000000000000",
+        "maxBalance": "10000000000000000000"
+      }
+    }
+  ],
+  "deploymentTime": "2025-11-19T09:23:06.445Z"
+}

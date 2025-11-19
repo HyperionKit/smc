@@ -1,0 +1,15 @@
+{
+  "network": "Lazchain Testnet",
+  "chainId": 133718,
+  "buyVaultAddress": "0x66d12d47034F8D6221586e32bac8bE6819467E07",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "tokens": {
+    "USDC": "0x677B021cCBA318A93BACB1653fD7bE0882ceE9Fd",
+    "USDT": "0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3"
+  },
+  "prices": {
+    "USDC": "0.01",
+    "USDT": "0.01"
+  },
+  "deploymentTime": "2025-11-19T09:30:09.573Z"
+}

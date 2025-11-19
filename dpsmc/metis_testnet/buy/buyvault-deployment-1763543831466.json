@@ -1,0 +1,15 @@
+{
+  "network": "Metis Sepolia Testnet",
+  "chainId": 59902,
+  "buyVaultAddress": "0xf3d5C21e02943539364A3A4dd2Cba88408024A5f",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "tokens": {
+    "USDC": "0x16d44fBBc8E1F3FBB6ac0674a44EECfa528604DD",
+    "USDT": "0x88b47706dF760cC4Cd5a13ae36A2809C8adD8898"
+  },
+  "prices": {
+    "USDC": "0.01",
+    "USDT": "0.01"
+  },
+  "deploymentTime": "2025-11-19T09:17:11.465Z"
+}
