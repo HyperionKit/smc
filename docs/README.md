@@ -23,6 +23,12 @@ Welcome to the comprehensive documentation for the DeFi ecosystem. This director
 
 #### Bridge System
 - **[bridge/TOKEN_MAPPING_SYSTEM.md](./bridge/TOKEN_MAPPING_SYSTEM.md)** - Detailed explanation of the token mapping system
+- **[bridge/BRIDGE_COMPATIBILITY.md](./bridge/BRIDGE_COMPATIBILITY.md)** - Network compatibility matrix and cross-chain capabilities
+- **[bridge/BRIDGE_OPERATIONS_GUIDE.md](./bridge/BRIDGE_OPERATIONS_GUIDE.md)** - Complete guide for bridge operations and bidirectional transfers
+- **[bridge/BIDIRECTIONAL_TRANSFER_SETUP.md](./bridge/BIDIRECTIONAL_TRANSFER_SETUP.md)** - Quick reference for setting up bidirectional transfers
+- **[bridge/BRIDGE_STATUS_MONITORING.md](./bridge/BRIDGE_STATUS_MONITORING.md)** - Guide for monitoring bridge status and balances
+- **[bridge/BRIDGE_SETUP_SUMMARY.md](./bridge/BRIDGE_SETUP_SUMMARY.md)** - Current status and next steps summary
+- **[bridge/IMPLEMENTATION_COMPLETE.md](./bridge/IMPLEMENTATION_COMPLETE.md)** - Implementation completion summary
 
 #### Faucet System
 - **[faucet/FAUCET_SYSTEM.md](./faucet/FAUCET_SYSTEM.md)** - Complete faucet system documentation
@@ -62,12 +68,15 @@ docs/
 4. Learn about **[hyperion/swap/SWAP_GUIDE.md](./hyperion/swap/SWAP_GUIDE.md)** for trading
 5. Check **[stake/STAKING_SYSTEM.md](./stake/STAKING_SYSTEM.md)** for earning rewards
 6. Understand **[bridge/TOKEN_MAPPING_SYSTEM.md](./bridge/TOKEN_MAPPING_SYSTEM.md)** for cross-chain transfers
+7. Read **[bridge/BIDIRECTIONAL_TRANSFER_SETUP.md](./bridge/BIDIRECTIONAL_TRANSFER_SETUP.md)** for bidirectional bridge setup
 
 ### For Developers
 1. Review **[DEFI_ECOSYSTEM_OVERVIEW.md](./DEFI_ECOSYSTEM_OVERVIEW.md)** for architecture
-2. Study individual system documentation for implementation details
-3. Check network-specific documentation for deployment information
-4. Refer to contract addresses and verification status in reports
+2. Study **[frontend/COMPLETE_FRONTEND_INTEGRATION_GUIDE.md](./frontend/COMPLETE_FRONTEND_INTEGRATION_GUIDE.md)** for frontend integration
+3. Study individual system documentation for implementation details
+4. Check network-specific documentation for deployment information
+5. Refer to contract addresses and verification status in reports
+6. Review **[bridge/BRIDGE_OPERATIONS_GUIDE.md](./bridge/BRIDGE_OPERATIONS_GUIDE.md)** for bridge operations
 
 ### For Administrators
 1. Read **[DEFI_ECOSYSTEM_OVERVIEW.md](./DEFI_ECOSYSTEM_OVERVIEW.md)** for system overview

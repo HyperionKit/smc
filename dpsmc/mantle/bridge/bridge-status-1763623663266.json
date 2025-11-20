@@ -1,0 +1,51 @@
+{
+  "network": "Mantle Testnet",
+  "chainId": 5003,
+  "bridgeAddress": "0xd6629696A52E914433b0924f1f49d42216708276",
+  "owner": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "bridgeFee": "1000000000000000",
+  "paused": false,
+  "tokenStatus": [
+    {
+      "symbol": "USDT",
+      "address": "0x6aE086fB835D53D7fae1B57Cc8A55FEEaEC6ba5b",
+      "balance": "0",
+      "formattedBalance": "0.0",
+      "minAmount": "10000000000",
+      "minFormatted": "10000.0",
+      "isSufficient": false,
+      "decimals": 6
+    },
+    {
+      "symbol": "USDC",
+      "address": "0x76837E513b3e6E6eFc828757764Ed5d0Fd24f2dE",
+      "balance": "0",
+      "formattedBalance": "0.0",
+      "minAmount": "10000000000",
+      "minFormatted": "10000.0",
+      "isSufficient": false,
+      "decimals": 6
+    },
+    {
+      "symbol": "DAI",
+      "address": "0xd6Ff774460085767e2c6b3DabcA5AE3D5a57e27a",
+      "balance": "0",
+      "formattedBalance": "0.0",
+      "minAmount": "10000000000000000000000",
+      "minFormatted": "10000.0",
+      "isSufficient": false,
+      "decimals": 18
+    },
+    {
+      "symbol": "WETH",
+      "address": "0xCa7b49d1C243a9289aE2316051eb15146125914d",
+      "balance": "0",
+      "formattedBalance": "0.0",
+      "minAmount": "100000000000000000000",
+      "minFormatted": "100.0",
+      "isSufficient": false,
+      "decimals": 18
+    }
+  ],
+  "timestamp": "2025-11-20T07:27:43.266Z"
+}

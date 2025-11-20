@@ -1,0 +1,33 @@
+{
+  "network": "Metis Sepolia Testnet",
+  "chainId": 59902,
+  "bridgeAddress": "0x1AC16E6C537438c82A61A106B876Ef69C7e247d2",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "fundingResults": [
+    {
+      "symbol": "USDT",
+      "status": "success",
+      "amount": "10000.0",
+      "txHash": "0x9c25a7ef09c2f6d152e56c04c61f670a94b5b02a7765c2d0975321e7898fd61d"
+    },
+    {
+      "symbol": "USDC",
+      "status": "success",
+      "amount": "10000.0",
+      "txHash": "0x4fe5b6384817861cbb618fd5b889f63d9d4dd1c792146338ea3b6dee82c24a64"
+    },
+    {
+      "symbol": "DAI",
+      "status": "success",
+      "amount": "10000.0",
+      "txHash": "0x743acf3cda009d55d06b0104f55047b630746c8410b4369711eb83276dcbcbc4"
+    },
+    {
+      "symbol": "WETH",
+      "status": "success",
+      "amount": "100.0",
+      "txHash": "0xf9d0cd2432875e8f49bd0e7c128846531368d06ae45e39e95f4dbc3615b3ea10"
+    }
+  ],
+  "timestamp": "2025-11-20T07:46:15.421Z"
+}

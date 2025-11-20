@@ -1,0 +1,51 @@
+{
+  "network": "Hyperion Testnet",
+  "chainId": 133717,
+  "bridgeAddress": "0xfF064Fd496256e84b68dAE2509eDA84a3c235550",
+  "owner": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "bridgeFee": "1000000000000000",
+  "paused": false,
+  "tokenStatus": [
+    {
+      "symbol": "USDT",
+      "address": "0x9b52D326D4866055F6c23297656002992e4293FC",
+      "balance": "3100214100000",
+      "formattedBalance": "3100214.1",
+      "minAmount": "10000000000",
+      "minFormatted": "10000.0",
+      "isSufficient": true,
+      "decimals": 6
+    },
+    {
+      "symbol": "USDC",
+      "address": "0x31424DB0B7a929283C394b4DA412253Ab6D61682",
+      "balance": "100200000000",
+      "formattedBalance": "100200.0",
+      "minAmount": "10000000000",
+      "minFormatted": "10000.0",
+      "isSufficient": true,
+      "decimals": 6
+    },
+    {
+      "symbol": "DAI",
+      "address": "0xdE896235F5897EC6D13Aa5b43964F9d2d34D82Fb",
+      "balance": "100200000000000000000000",
+      "formattedBalance": "100200.0",
+      "minAmount": "10000000000000000000000",
+      "minFormatted": "10000.0",
+      "isSufficient": true,
+      "decimals": 18
+    },
+    {
+      "symbol": "WETH",
+      "address": "0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4",
+      "balance": "1002000000000000000000",
+      "formattedBalance": "1002.0",
+      "minAmount": "100000000000000000000",
+      "minFormatted": "100.0",
+      "isSufficient": true,
+      "decimals": 18
+    }
+  ],
+  "timestamp": "2025-11-20T07:50:54.995Z"
+}

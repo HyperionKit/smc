@@ -1,0 +1,41 @@
+{
+  "network": "Mantle Testnet",
+  "chainId": 5003,
+  "bridgeAddress": "0xd6629696A52E914433b0924f1f49d42216708276",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "timestamp": "2025-11-20T07:41:16.994Z",
+  "results": [
+    {
+      "symbol": "USDT",
+      "tokenAddress": "0x6aE086fB835D53D7fae1B57Cc8A55FEEaEC6ba5b",
+      "chainId": 5003,
+      "decimals": 6,
+      "status": "added",
+      "txHash": "0xffb9181a03c9b2cf64e958eee024db1626668025fa9e2159436c056b5deb27ab"
+    },
+    {
+      "symbol": "USDC",
+      "tokenAddress": "0x76837E513b3e6E6eFc828757764Ed5d0Fd24f2dE",
+      "chainId": 5003,
+      "decimals": 6,
+      "status": "added",
+      "txHash": "0xa1f4dca686990d5d488c5f55eb96fbacd4922bf3a1fe0f398c8fc7c3a5fb7866"
+    },
+    {
+      "symbol": "DAI",
+      "tokenAddress": "0xd6Ff774460085767e2c6b3DabcA5AE3D5a57e27a",
+      "chainId": 5003,
+      "decimals": 18,
+      "status": "added",
+      "txHash": "0x5028126916718ecd2eaa7ab420afd8bf207bae008709cdff1eac3de02325cac8"
+    },
+    {
+      "symbol": "WETH",
+      "tokenAddress": "0xCa7b49d1C243a9289aE2316051eb15146125914d",
+      "chainId": 5003,
+      "decimals": 18,
+      "status": "added",
+      "txHash": "0x3bd460ac7c3895bb5d849493dc3befdc5f5fbe142b574ce76b12131e545aa3b9"
+    }
+  ]
+}

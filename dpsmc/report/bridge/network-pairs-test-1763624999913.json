@@ -1,0 +1,275 @@
+{
+  "timestamp": "2025-11-20T07:49:59.913Z",
+  "testAmount": "100000000",
+  "results": [
+    {
+      "fromNetwork": "Hyperion Testnet",
+      "toNetwork": "Mantle Testnet",
+      "checks": {
+        "destinationSupported": true,
+        "fromBridgeBalance": {
+          "raw": "3100214100000",
+          "formatted": "3100214.1",
+          "sufficient": true
+        },
+        "toBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "tokenMapping": {
+          "exists": true,
+          "address": "0x6aE086fB835D53D7fae1B57Cc8A55FEEaEC6ba5b"
+        }
+      },
+      "ready": true
+    },
+    {
+      "fromNetwork": "Hyperion Testnet",
+      "toNetwork": "Lazchain Testnet",
+      "checks": {
+        "destinationSupported": true,
+        "fromBridgeBalance": {
+          "raw": "3100214100000",
+          "formatted": "3100214.1",
+          "sufficient": true
+        },
+        "toBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "tokenMapping": {
+          "exists": true,
+          "address": "0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3"
+        }
+      },
+      "ready": true
+    },
+    {
+      "fromNetwork": "Hyperion Testnet",
+      "toNetwork": "Metis Sepolia Testnet",
+      "checks": {
+        "destinationSupported": true,
+        "fromBridgeBalance": {
+          "raw": "3100214100000",
+          "formatted": "3100214.1",
+          "sufficient": true
+        },
+        "toBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "tokenMapping": {
+          "exists": true,
+          "address": "0x88b47706dF760cC4Cd5a13ae36A2809C8adD8898"
+        }
+      },
+      "ready": true
+    },
+    {
+      "fromNetwork": "Mantle Testnet",
+      "toNetwork": "Hyperion Testnet",
+      "checks": {
+        "destinationSupported": true,
+        "fromBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "toBridgeBalance": {
+          "raw": "3100214100000",
+          "formatted": "3100214.1",
+          "sufficient": true
+        },
+        "tokenMapping": {
+          "exists": true,
+          "address": "0x9b52D326D4866055F6c23297656002992e4293FC"
+        }
+      },
+      "ready": true
+    },
+    {
+      "fromNetwork": "Mantle Testnet",
+      "toNetwork": "Lazchain Testnet",
+      "checks": {
+        "destinationSupported": true,
+        "fromBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "toBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "tokenMapping": {
+          "exists": true,
+          "address": "0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3"
+        }
+      },
+      "ready": true
+    },
+    {
+      "fromNetwork": "Mantle Testnet",
+      "toNetwork": "Metis Sepolia Testnet",
+      "checks": {
+        "destinationSupported": true,
+        "fromBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "toBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "tokenMapping": {
+          "exists": true,
+          "address": "0x88b47706dF760cC4Cd5a13ae36A2809C8adD8898"
+        }
+      },
+      "ready": true
+    },
+    {
+      "fromNetwork": "Lazchain Testnet",
+      "toNetwork": "Hyperion Testnet",
+      "checks": {
+        "destinationSupported": true,
+        "fromBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "toBridgeBalance": {
+          "raw": "3100214100000",
+          "formatted": "3100214.1",
+          "sufficient": true
+        },
+        "tokenMapping": {
+          "exists": true,
+          "address": "0x9b52D326D4866055F6c23297656002992e4293FC"
+        }
+      },
+      "ready": true
+    },
+    {
+      "fromNetwork": "Lazchain Testnet",
+      "toNetwork": "Mantle Testnet",
+      "checks": {
+        "destinationSupported": true,
+        "fromBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "toBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "tokenMapping": {
+          "exists": true,
+          "address": "0x6aE086fB835D53D7fae1B57Cc8A55FEEaEC6ba5b"
+        }
+      },
+      "ready": true
+    },
+    {
+      "fromNetwork": "Lazchain Testnet",
+      "toNetwork": "Metis Sepolia Testnet",
+      "checks": {
+        "destinationSupported": true,
+        "fromBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "toBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "tokenMapping": {
+          "exists": true,
+          "address": "0x88b47706dF760cC4Cd5a13ae36A2809C8adD8898"
+        }
+      },
+      "ready": true
+    },
+    {
+      "fromNetwork": "Metis Sepolia Testnet",
+      "toNetwork": "Hyperion Testnet",
+      "checks": {
+        "destinationSupported": true,
+        "fromBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "toBridgeBalance": {
+          "raw": "3100214100000",
+          "formatted": "3100214.1",
+          "sufficient": true
+        },
+        "tokenMapping": {
+          "exists": true,
+          "address": "0x9b52D326D4866055F6c23297656002992e4293FC"
+        }
+      },
+      "ready": true
+    },
+    {
+      "fromNetwork": "Metis Sepolia Testnet",
+      "toNetwork": "Mantle Testnet",
+      "checks": {
+        "destinationSupported": true,
+        "fromBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "toBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "tokenMapping": {
+          "exists": true,
+          "address": "0x6aE086fB835D53D7fae1B57Cc8A55FEEaEC6ba5b"
+        }
+      },
+      "ready": true
+    },
+    {
+      "fromNetwork": "Metis Sepolia Testnet",
+      "toNetwork": "Lazchain Testnet",
+      "checks": {
+        "destinationSupported": true,
+        "fromBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "toBridgeBalance": {
+          "raw": "10000000000",
+          "formatted": "10000.0",
+          "sufficient": true
+        },
+        "tokenMapping": {
+          "exists": true,
+          "address": "0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3"
+        }
+      },
+      "ready": true
+    }
+  ],
+  "summary": {
+    "totalPairs": 12,
+    "readyPairs": 12,
+    "notReadyPairs": 0
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "timestamp": "2025-11-20T07:43:25.700Z",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "currentNetwork": "Metis Sepolia",
+  "results": [
+    {
+      "network": "Metis Sepolia",
+      "chainId": 59902,
+      "bridgeAddress": "0x1AC16E6C537438c82A61A106B876Ef69C7e247d2",
+      "results": [
+        {
+          "symbol": "USDT",
+          "mantleTokenAddress": "0x6aE086fB835D53D7fae1B57Cc8A55FEEaEC6ba5b",
+          "chainId": 5003,
+          "decimals": 6,
+          "status": "added",
+          "txHash": "0x33f48aff1ddee55cab02e5b22c114c97b9e47b1fba3340aa4105b3e99bb6644a"
+        },
+        {
+          "symbol": "USDC",
+          "mantleTokenAddress": "0x76837E513b3e6E6eFc828757764Ed5d0Fd24f2dE",
+          "chainId": 5003,
+          "decimals": 6,
+          "status": "added",
+          "txHash": "0xcd4a480b060efd02c6f36ad09de7a2611624c73d58944259691cc9e614f16f72"
+        },
+        {
+          "symbol": "DAI",
+          "mantleTokenAddress": "0xd6Ff774460085767e2c6b3DabcA5AE3D5a57e27a",
+          "chainId": 5003,
+          "decimals": 18,
+          "status": "added",
+          "txHash": "0xcf019debd56a3a5bacd3b57cf96b3a3f9a7405595594a565424c268ac7637d81"
+        },
+        {
+          "symbol": "WETH",
+          "mantleTokenAddress": "0xCa7b49d1C243a9289aE2316051eb15146125914d",
+          "chainId": 5003,
+          "decimals": 18,
+          "status": "added",
+          "txHash": "0x685833bce2d9ee3119f203c9ea777c95aaf1a1812945995177c77d9ac7ced856"
+        }
+      ]
+    }
+  ]
+}

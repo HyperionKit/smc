@@ -3,9 +3,9 @@
 ## Deployment Information
 - **Network**: Metis Hyperion Testnet
 - **Deployer**: 0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff
-- **Transaction Tracker**: 0xB2c2cbe757c3Ded19BC19A75804eeB7D6CC9704b
-- **Deployment Time**: 2025-08-03T15:36:56.955Z
-- **Block Number**: 4102321
+- **Transaction Tracker**: 0x903Af9b518110E1Ee9BcF7a71b3d64a13C8F0492
+- **Deployment Time**: 2025-11-20T06:56:25.191Z
+- **Block Number**: 31038555
 
 ## Tracked Contracts
 - **LiquidityPool**: 0x91C39DAA7617C5188d0427Fc82e4006803772B74 (swap)

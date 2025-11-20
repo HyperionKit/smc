@@ -32,12 +32,12 @@ const TOKEN_ADDRESSES: { [chainId: number]: { [symbol: string]: string } } = {
     DAI: "0x23E380def17aAA8554297069422039517B2997b9",
     WETH: "0x1A3d532875aD585776c814E7749a5e7a58b3E49b"
   },
-  // Mantle Testnet - Update with actual addresses after deployment
+  // Mantle Testnet
   [NETWORKS.MANTLE_TESTNET]: {
-    USDT: "0x0000000000000000000000000000000000000000", // TODO: Update after deployment
-    USDC: "0x0000000000000000000000000000000000000000", // TODO: Update after deployment
-    DAI: "0x0000000000000000000000000000000000000000", // TODO: Update after deployment
-    WETH: "0x0000000000000000000000000000000000000000"  // TODO: Update after deployment
+    USDT: "0x6aE086fB835D53D7fae1B57Cc8A55FEEaEC6ba5b",
+    USDC: "0x76837E513b3e6E6eFc828757764Ed5d0Fd24f2dE",
+    DAI: "0xd6Ff774460085767e2c6b3DabcA5AE3D5a57e27a",
+    WETH: "0xCa7b49d1C243a9289aE2316051eb15146125914d"
   }
 };
 

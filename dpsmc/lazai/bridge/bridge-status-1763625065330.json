@@ -1,0 +1,51 @@
+{
+  "network": "Lazchain Testnet",
+  "chainId": 133718,
+  "bridgeAddress": "0xf2D33cF11d102F94148c38f943C99408f7C898cf",
+  "owner": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "bridgeFee": "1000000000000000",
+  "paused": false,
+  "tokenStatus": [
+    {
+      "symbol": "USDT",
+      "address": "0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3",
+      "balance": "10000000000",
+      "formattedBalance": "10000.0",
+      "minAmount": "10000000000",
+      "minFormatted": "10000.0",
+      "isSufficient": true,
+      "decimals": 6
+    },
+    {
+      "symbol": "USDC",
+      "address": "0x677B021cCBA318A93BACB1653fD7bE0882ceE9Fd",
+      "balance": "10000000000",
+      "formattedBalance": "10000.0",
+      "minAmount": "10000000000",
+      "minFormatted": "10000.0",
+      "isSufficient": true,
+      "decimals": 6
+    },
+    {
+      "symbol": "DAI",
+      "address": "0xeC53e4a54b3AB36fb684966c222Ff6f347C7e84c",
+      "balance": "10000000000000000000000",
+      "formattedBalance": "10000.0",
+      "minAmount": "10000000000000000000000",
+      "minFormatted": "10000.0",
+      "isSufficient": true,
+      "decimals": 18
+    },
+    {
+      "symbol": "WETH",
+      "address": "0xef63df9fa0E5f79127AaC0B2a0ec969CC30be532",
+      "balance": "100000000000000000000",
+      "formattedBalance": "100.0",
+      "minAmount": "100000000000000000000",
+      "minFormatted": "100.0",
+      "isSufficient": true,
+      "decimals": 18
+    }
+  ],
+  "timestamp": "2025-11-20T07:51:05.330Z"
+}

@@ -55,24 +55,50 @@ All 6 trading pairs have been created and initialized with 1,000,000 tokens of l
 - [Faucet](https://hyperion-testnet-explorer.metisdevops.link/address/0xE1B8C7168B0c48157A5e4B80649C5a1b83bF4cC4)
 - [TransactionTracker](https://hyperion-testnet-explorer.metisdevops.link/address/0xd68a2cCa272c0ABDb3B0A2e6C15Ca86216cFDbe6)
 
-## 📝 System Features
+## 🌉 Bridge Compatibility
 
-### ✅ Completed Deployments
-- ✅ **All Token Contracts** - USDT, USDC, DAI, WETH (all verified)
-- ✅ **LiquidityPool** - AMM with 6 trading pairs (all verified)
-- ✅ **BuyVault** - Direct token purchase with METIS (verified)
-- ✅ **StakingRewards** - USDT staking for USDC rewards (verified)
-- ✅ **Bridge** - Cross-chain token transfers (verified)
-- ✅ **Faucet** - Test token distribution (verified)
-- ✅ **TransactionTracker** - Real-time analytics (verified)
+### Compatible Networks
 
-### 🧪 Testing Status
-- ✅ **All Trading Pairs** - Tested successfully
-- ✅ **BuyVault** - 0.1 METIS → 10 USDC conversion verified
-- ✅ **StakingRewards** - 100 USDT staked → 12,000 USDC rewards claimed
-- ✅ **Bridge** - All 4 tokens successfully deposited and withdrawn
-- ✅ **Faucet** - Token distribution working correctly
-- ✅ **TransactionTracker** - Real-time analytics operational
+If a Bridge contract is deployed on Hyperion Testnet, it will be compatible with the following networks:
+
+- ✅ **Mantle Testnet** (Chain ID: 5003) — Recommended
+- ✅ **Mantle Mainnet** (Chain ID: 5000) — Recommended
+- ✅ **Lazchain Testnet** (Chain ID: 133718) — Recommended
+- ✅ **Metis Sepolia Testnet** (Chain ID: 59902) — Recommended
+
+### Token Mappings
+
+The bridge supports cross-chain transfers for the following tokens across all compatible networks:
+
+| Token | Symbol | Decimals | Hyperion Address |
+|-------|--------|----------|-------------------|
+| Tether USD | USDT | 6 | `0x9b52D326D4866055F6c23297656002992e4293FC` |
+| USD Coin | USDC | 6 | `0x31424DB0B7a929283C394b4DA412253Ab6D61682` |
+| Dai Stablecoin | DAI | 18 | `0xdE896235F5897EC6D13Aa5b43964F9d2d34D82Fb` |
+| Wrapped Ether | WETH | 18 | `0xc8BB7DB0a07d2146437cc20e1f3a133474546dD4` |
+
+### Cross-Chain Transfer Capabilities
+
+Once the Bridge is deployed on Hyperion Testnet, users will be able to:
+- Deposit tokens on Hyperion and withdraw on Mantle Testnet, Mantle Mainnet, Lazchain, or Metis Sepolia
+- Deposit tokens on any compatible network and withdraw on Hyperion
+- Transfer tokens between any two compatible networks via Hyperion as an intermediary
+
+### Bridge Deployment
+
+The bridge on Hyperion Testnet is deployed and configured with:
+- Supported networks (Mantle Testnet, Mantle Mainnet, Lazchain, Metis Sepolia)
+- Token mappings for all 4 tokens across all networks
+- Relayer configuration (deployer address as initial relayer)
+
+## 📝 Next Steps
+
+1. ✅ **All Contracts Deployed** - All contracts have been successfully deployed and verified
+2. ✅ **Contract Verification** - All contracts verified on block explorer
+3. **Fund Bridge Contracts** - Fund all bridges for bidirectional transfers (see `docs/bridge/BRIDGE_OPERATIONS_GUIDE.md`)
+4. **Test Trading Pairs** - Execute swaps on all pairs
+5. **Add More Liquidity** if needed
+6. **Deploy Frontend Integration** - See `docs/frontend/COMPLETE_FRONTEND_INTEGRATION_GUIDE.md` for complete integration guide
 
 ## 🚀 Deployment Commands Used
 
@@ -125,4 +151,13 @@ npx hardhat run scripts/tracker/deploy-transaction-tracker.ts --network metis-hy
 - **Chain ID:** 133717
 - **All Contracts Verified:** ✅ Yes
 - **System Status:** ✅ Fully Operational
+
+## 🧪 Testing Status
+
+- ✅ **All Trading Pairs** - Tested successfully
+- ✅ **BuyVault** - 0.1 METIS → 10 USDC conversion verified
+- ✅ **StakingRewards** - 100 USDT staked → 12,000 USDC rewards claimed
+- ✅ **Bridge** - All 4 tokens successfully deposited and withdrawn
+- ✅ **Faucet** - Token distribution working correctly
+- ✅ **TransactionTracker** - Real-time analytics operational
 

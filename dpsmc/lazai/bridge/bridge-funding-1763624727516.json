@@ -1,0 +1,33 @@
+{
+  "network": "Lazchain Testnet",
+  "chainId": 133718,
+  "bridgeAddress": "0xf2D33cF11d102F94148c38f943C99408f7C898cf",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "fundingResults": [
+    {
+      "symbol": "USDT",
+      "status": "success",
+      "amount": "10000.0",
+      "txHash": "0xca9e34b60f6d03e7eca68e414bd4fd934d32d4a139a59f229fd57cba8a79bc8c"
+    },
+    {
+      "symbol": "USDC",
+      "status": "success",
+      "amount": "10000.0",
+      "txHash": "0x2cbd2c1fc60211228489543bdcd7ed0b0e7b87cd78a878db97f2023cbe96d986"
+    },
+    {
+      "symbol": "DAI",
+      "status": "success",
+      "amount": "10000.0",
+      "txHash": "0x1620234700741dc65b000c9940e21f6e1e7e50665124a10a50e512c7b3385080"
+    },
+    {
+      "symbol": "WETH",
+      "status": "success",
+      "amount": "100.0",
+      "txHash": "0xb9c37a677febddfd7cdaa32bae36c28a472932585f09a33a02d9f06f2c09f09c"
+    }
+  ],
+  "timestamp": "2025-11-20T07:45:27.516Z"
+}

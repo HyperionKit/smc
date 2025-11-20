@@ -1,0 +1,33 @@
+{
+  "network": "Mantle Testnet",
+  "chainId": 5003,
+  "bridgeAddress": "0xd6629696A52E914433b0924f1f49d42216708276",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "fundingResults": [
+    {
+      "symbol": "USDT",
+      "status": "success",
+      "amount": "10000.0",
+      "txHash": "0xc0a44e88ab15b335c94f760d3462cfb843d85aa34d8e0e0766bb6dabfdbccb73"
+    },
+    {
+      "symbol": "USDC",
+      "status": "success",
+      "amount": "10000.0",
+      "txHash": "0xa13d79d727867a02c12473efe93244a9ff270a4debc0bfbbb2e8a4a24fa39bfd"
+    },
+    {
+      "symbol": "DAI",
+      "status": "success",
+      "amount": "10000.0",
+      "txHash": "0xa0f0628f0de0d38840cb9427f703975c3e41216a7a5be8e2c3dfe6f0374969d5"
+    },
+    {
+      "symbol": "WETH",
+      "status": "success",
+      "amount": "100.0",
+      "txHash": "0xe4da25fc750b5cd65bdb51c98407e62d2d00a3ddbc0fb44db280609e9b7bf0f3"
+    }
+  ],
+  "timestamp": "2025-11-20T07:44:17.880Z"
+}

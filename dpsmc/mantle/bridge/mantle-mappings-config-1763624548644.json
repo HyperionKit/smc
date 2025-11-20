@@ -1,0 +1,46 @@
+{
+  "timestamp": "2025-11-20T07:42:28.644Z",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "currentNetwork": "Lazchain",
+  "results": [
+    {
+      "network": "Lazchain",
+      "chainId": 133718,
+      "bridgeAddress": "0xf2D33cF11d102F94148c38f943C99408f7C898cf",
+      "results": [
+        {
+          "symbol": "USDT",
+          "mantleTokenAddress": "0x6aE086fB835D53D7fae1B57Cc8A55FEEaEC6ba5b",
+          "chainId": 5003,
+          "decimals": 6,
+          "status": "added",
+          "txHash": "0xed5ea9b52b531d7ed37462a15a2e8c0a231965569d546975e7333ac81c34625f"
+        },
+        {
+          "symbol": "USDC",
+          "mantleTokenAddress": "0x76837E513b3e6E6eFc828757764Ed5d0Fd24f2dE",
+          "chainId": 5003,
+          "decimals": 6,
+          "status": "added",
+          "txHash": "0x7dce1ce580a43f7a8c0baef8a1f267dd04eee89c9cee6050a46afc26d29af895"
+        },
+        {
+          "symbol": "DAI",
+          "mantleTokenAddress": "0xd6Ff774460085767e2c6b3DabcA5AE3D5a57e27a",
+          "chainId": 5003,
+          "decimals": 18,
+          "status": "added",
+          "txHash": "0x44e94f6d6cf194ba82c601cb2591fcc6fc354ac44817de913ddb975001cf7678"
+        },
+        {
+          "symbol": "WETH",
+          "mantleTokenAddress": "0xCa7b49d1C243a9289aE2316051eb15146125914d",
+          "chainId": 5003,
+          "decimals": 18,
+          "status": "added",
+          "txHash": "0xae7177d0d13afcde809e7362857f6af7bf42301d41d2e901f53efd28ce5e1093"
+        }
+      ]
+    }
+  ]
+}

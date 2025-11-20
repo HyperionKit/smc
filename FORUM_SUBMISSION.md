@@ -10,7 +10,9 @@
 ## Deployment Networks
 
 - **Hyperion Testnet** (Chain ID: 133717) - Fully Deployed & Verified
-- **Mantle Testnet** (Chain ID: 5003) - Deployed
+- **Mantle Testnet** (Chain ID: 5003) - Fully Deployed
+- **Lazchain Testnet** (Chain ID: 133718) - Fully Deployed
+- **Metis Sepolia Testnet** (Chain ID: 59902) - Fully Deployed
 
 ## Contract Addresses Summary
 
@@ -50,6 +52,49 @@
 | LiquidityPool | AMM/Swap | `0x93c714601b8bc0C9A9d605CEc99786847654598e` | [Deployed](https://sepolia.mantlescan.xyz/address/0x93c714601b8bc0C9A9d605CEc99786847654598e) |
 | BuyVault | Token Purchase | `0x1E0B86323fdFFa099AAEeE9B3C8B2f8C6E20fFa5` | [Deployed](https://sepolia.mantlescan.xyz/address/0x1E0B86323fdFFa099AAEeE9B3C8B2f8C6E20fFa5) |
 | StakingRewards | Staking | `0x1a80Db4cf9E26BafCf672c534Ab219630fFE1A5E` | [Deployed](https://sepolia.mantlescan.xyz/address/0x1a80Db4cf9E26BafCf672c534Ab219630fFE1A5E) |
+| Bridge | Cross-Chain | `0xd6629696A52E914433b0924f1f49d42216708276` | [Deployed](https://sepolia.mantlescan.xyz/address/0xd6629696A52E914433b0924f1f49d42216708276) |
+| Faucet | Token Distribution | `0x0e04CB9E80579aA464Af122457fa2c477c126868` | [Deployed](https://sepolia.mantlescan.xyz/address/0x0e04CB9E80579aA464Af122457fa2c477c126868) |
+| TransactionTracker | Analytics | `0xB2ceDc981CD73877F35bE616c850C36C435cF055` | [Deployed](https://sepolia.mantlescan.xyz/address/0xB2ceDc981CD73877F35bE616c850C36C435cF055) |
+
+### Lazchain Testnet (Fully Deployed)
+
+#### Token Contracts
+| Token | Symbol | Address | Status |
+|-------|--------|---------|--------|
+| Tether USD | USDT | `0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3` | [Deployed](https://testnet-explorer.lazai.network/address/0x9D81C1a89bE608417B5Bb1C1cF5858594D01E8a3) |
+| USD Coin | USDC | `0x677B021cCBA318A93BACB1653fD7bE0882ceE9Fd` | [Deployed](https://testnet-explorer.lazai.network/address/0x677B021cCBA318A93BACB1653fD7bE0882ceE9Fd) |
+| Dai Stablecoin | DAI | `0xeC53e4a54b3AB36fb684966c222Ff6f347C7e84c` | [Deployed](https://testnet-explorer.lazai.network/address/0xeC53e4a54b3AB36fb684966c222Ff6f347C7e84c) |
+| Wrapped Ether | WETH | `0xef63df9fa0E5f79127AaC0B2a0ec969CC30be532` | [Deployed](https://testnet-explorer.lazai.network/address/0xef63df9fa0E5f79127AaC0B2a0ec969CC30be532) |
+
+#### DeFi System Contracts
+| Contract | Type | Address | Status |
+|----------|------|---------|--------|
+| LiquidityPool | AMM/Swap | `0xE07471cbe06bC3Dd3F74001A2EFBEeA1D60f51f8` | [Deployed](https://testnet-explorer.lazai.network/address/0xE07471cbe06bC3Dd3F74001A2EFBEeA1D60f51f8) |
+| BuyVault | Token Purchase | `0x66d12d47034F8D6221586e32bac8bE6819467E07` | [Deployed](https://testnet-explorer.lazai.network/address/0x66d12d47034F8D6221586e32bac8bE6819467E07) |
+| StakingRewards | Staking | `0x84d0A880C970A53154D4d6B25E3825046D677603` | [Deployed](https://testnet-explorer.lazai.network/address/0x84d0A880C970A53154D4d6B25E3825046D677603) |
+| Bridge | Cross-Chain | `0xf2D33cF11d102F94148c38f943C99408f7C898cf` | [Deployed](https://testnet-explorer.lazai.network/address/0xf2D33cF11d102F94148c38f943C99408f7C898cf) |
+| Faucet | Token Distribution | `0x04107Dd22f966aB3f9A130798FEc45602476F6a5` | [Deployed](https://testnet-explorer.lazai.network/address/0x04107Dd22f966aB3f9A130798FEc45602476F6a5) |
+| TransactionTracker | Analytics | `0x815BF4455296f9F52Cf4cE5B5B4A1c7D615f6152` | [Deployed](https://testnet-explorer.lazai.network/address/0x815BF4455296f9F52Cf4cE5B5B4A1c7D615f6152) |
+
+### Metis Sepolia Testnet (Fully Deployed)
+
+#### Token Contracts
+| Token | Symbol | Address | Status |
+|-------|--------|---------|--------|
+| Tether USD | USDT | `0x88b47706dF760cC4Cd5a13ae36A2809C8adD8898` | [Deployed](https://sepolia.explorer.metis.io/address/0x88b47706dF760cC4Cd5a13ae36A2809C8adD8898) |
+| USD Coin | USDC | `0x16d44fBBc8E1F3FBB6ac0674a44EECfa528604DD` | [Deployed](https://sepolia.explorer.metis.io/address/0x16d44fBBc8E1F3FBB6ac0674a44EECfa528604DD) |
+| Dai Stablecoin | DAI | `0x23E380def17aAA8554297069422039517B2997b9` | [Deployed](https://sepolia.explorer.metis.io/address/0x23E380def17aAA8554297069422039517B2997b9) |
+| Wrapped Ether | WETH | `0x1A3d532875aD585776c814E7749a5e7a58b3E49b` | [Deployed](https://sepolia.explorer.metis.io/address/0x1A3d532875aD585776c814E7749a5e7a58b3E49b) |
+
+#### DeFi System Contracts
+| Contract | Type | Address | Status |
+|----------|------|---------|--------|
+| LiquidityPool | AMM/Swap | `0x5AC81bC04fc19871E103667ee4b3f0B77b960D7d` | [Deployed](https://sepolia.explorer.metis.io/address/0x5AC81bC04fc19871E103667ee4b3f0B77b960D7d) |
+| BuyVault | Token Purchase | `0xf3d5C21e02943539364A3A4dd2Cba88408024A5f` | [Deployed](https://sepolia.explorer.metis.io/address/0xf3d5C21e02943539364A3A4dd2Cba88408024A5f) |
+| StakingRewards | Staking | `0xCfaf530E5c6568D3953DfFcB2363Ae4F77332afa` | [Deployed](https://sepolia.explorer.metis.io/address/0xCfaf530E5c6568D3953DfFcB2363Ae4F77332afa) |
+| Bridge | Cross-Chain | `0x1AC16E6C537438c82A61A106B876Ef69C7e247d2` | [Deployed](https://sepolia.explorer.metis.io/address/0x1AC16E6C537438c82A61A106B876Ef69C7e247d2) |
+| Faucet | Token Distribution | `0x50888Ced4d0BCcB1CD7494245716Ac005A42a8D9` | [Deployed](https://sepolia.explorer.metis.io/address/0x50888Ced4d0BCcB1CD7494245716Ac005A42a8D9) |
+| TransactionTracker | Analytics | `0x3A9f855553050b5A2cfbeC92E2AF4a891a4B3885` | [Deployed](https://sepolia.explorer.metis.io/address/0x3A9f855553050b5A2cfbeC92E2AF4a891a4B3885) |
 
 ## System Overview
 
@@ -71,20 +116,23 @@
 - **Dynamic reward rate** (0.3 USDC per second)
 - **Flexible staking/unstaking**
 
-#### 4. Bridge System (Hyperion)
-- **Cross-chain transfers** between networks
+#### 4. Bridge System
+- **Cross-chain transfers** between networks (Hyperion, Mantle, Lazchain, Metis Sepolia)
 - **Multi-token support** (USDT, USDC, DAI, WETH)
 - **Secure withdrawal** with signature verification
+- **Multi-network compatibility** with token mapping system
 
-#### 5. Faucet System (Hyperion)
+#### 5. Faucet System
 - **Test token distribution** for all supported tokens
 - **Rate limiting** to prevent abuse
 - **Admin controls** for token management
+- **24-hour drip interval** with configurable limits
 
-#### 6. Transaction Tracker (Hyperion)
+#### 6. Transaction Tracker
 - **Real-time analytics** across all contracts
 - **Total value tracking** in USD
 - **Transaction history** and statistics
+- **Multi-contract monitoring** (Swap, Buy, Stake, Bridge, Faucet)
 
 ## Technical Specifications
 
@@ -114,7 +162,18 @@
 
 ### Mantle Testnet
 - **All Trading Pairs**: Created and initialized with liquidity
-- **Core Contracts**: Deployed and operational
+- **All Contracts**: Fully deployed and operational (10 contracts)
+- **Bridge**: Configured with cross-chain compatibility
+
+### Lazchain Testnet
+- **All Trading Pairs**: Created and initialized with liquidity
+- **All Contracts**: Fully deployed and operational (10 contracts)
+- **Bridge**: Configured with cross-chain compatibility
+
+### Metis Sepolia Testnet
+- **All Trading Pairs**: Created and initialized with liquidity
+- **All Contracts**: Fully deployed and operational (10 contracts)
+- **Bridge**: Configured with cross-chain compatibility
 
 ## Deployment Commands
 
@@ -161,6 +220,69 @@ npx hardhat run scripts/buy/deploy-buy-contract.ts --network mantle-testnet
 
 # Deploy staking contract
 npx hardhat run scripts/stake/deploy-staking-contract.ts --network mantle-testnet
+
+# Deploy bridge contract
+npx hardhat run scripts/bridge/deploy-bridge-contract.ts --network mantle-testnet
+
+# Deploy faucet contract
+npx hardhat run scripts/faucet/deploy-faucet-contract-mantle.ts --network mantle-testnet
+
+# Deploy transaction tracker
+npx hardhat run scripts/tracker/deploy-transaction-tracker-mantle.ts --network mantle-testnet
+```
+
+### Lazchain Testnet
+```bash
+# Deploy tokens
+npx hardhat run scripts/swap/script/lazchain/deploy-tokens.ts --network lazchain-testnet
+
+# Deploy liquidity pool
+npx hardhat run scripts/swap/script/lazchain/deploy-liquidity-pool.ts --network lazchain-testnet
+
+# Setup liquidity pools
+npx hardhat run scripts/swap/script/lazchain/setup-liquidity-pools.ts --network lazchain-testnet
+
+# Deploy buy contract
+npx hardhat run scripts/buy/deploy-buy-contract-lazchain.ts --network lazchain-testnet
+
+# Deploy staking contract
+npx hardhat run scripts/stake/deploy-staking-contract-lazchain.ts --network lazchain-testnet
+
+# Deploy bridge contract
+npx hardhat run scripts/bridge/deploy-bridge-contract.ts --network lazchain-testnet
+
+# Deploy faucet contract
+npx hardhat run scripts/faucet/deploy-faucet-contract-lazchain.ts --network lazchain-testnet
+
+# Deploy transaction tracker
+npx hardhat run scripts/tracker/deploy-transaction-tracker-lazchain.ts --network lazchain-testnet
+```
+
+### Metis Sepolia Testnet
+```bash
+# Deploy tokens
+npx hardhat run scripts/swap/script/metisSepolia/deploy-tokens.ts --network metis-sepolia-testnet
+
+# Deploy liquidity pool
+npx hardhat run scripts/swap/script/metisSepolia/deploy-liquidity-pool.ts --network metis-sepolia-testnet
+
+# Setup liquidity pools
+npx hardhat run scripts/swap/script/metisSepolia/setup-liquidity-pools.ts --network metis-sepolia-testnet
+
+# Deploy buy contract
+npx hardhat run scripts/buy/deploy-buy-contract-metissepolia.ts --network metis-sepolia-testnet
+
+# Deploy staking contract
+npx hardhat run scripts/stake/deploy-staking-contract-metissepolia.ts --network metis-sepolia-testnet
+
+# Deploy bridge contract
+npx hardhat run scripts/bridge/deploy-bridge-contract.ts --network metis-sepolia-testnet
+
+# Deploy faucet contract
+npx hardhat run scripts/faucet/deploy-faucet-contract-metissepolia.ts --network metis-sepolia-testnet
+
+# Deploy transaction tracker
+npx hardhat run scripts/tracker/deploy-transaction-tracker-metissepolia.ts --network metis-sepolia-testnet
 ```
 
 ## Current Statistics
@@ -172,19 +294,32 @@ npx hardhat run scripts/stake/deploy-staking-contract.ts --network mantle-testne
 - **Trading Pairs**: 6 pairs with 1,000,000 tokens initial liquidity each
 
 ### Mantle Testnet
-- **Total Contracts Deployed**: 7
+- **Total Contracts Deployed**: 10 (4 tokens + 6 system contracts)
+- **Trading Pairs**: 6 (all active with liquidity)
+- **Total Liquidity**: 6,000,000 tokens (1M per pair)
+
+### Lazchain Testnet
+- **Total Contracts Deployed**: 10 (4 tokens + 6 system contracts)
+- **Trading Pairs**: 6 (all active with liquidity)
+- **Total Liquidity**: 6,000,000 tokens (1M per pair)
+- **RPC URL**: https://testnet.lazai.network
+
+### Metis Sepolia Testnet
+- **Total Contracts Deployed**: 10 (4 tokens + 6 system contracts)
 - **Trading Pairs**: 6 (all active with liquidity)
 - **Total Liquidity**: 6,000,000 tokens (1M per pair)
 
 ## Project Status
 
 ### COMPLETED FEATURES
-- **Complete DeFi Ecosystem**: Swap, Buy, Stake, Bridge, Faucet
-- **Multi-Network Support**: Hyperion, Mantle
-- **Real-Time Analytics**: Transaction tracking and statistics
+- **Complete DeFi Ecosystem**: Swap, Buy, Stake, Bridge, Faucet, TransactionTracker
+- **Multi-Network Support**: Hyperion, Mantle, Lazchain, Metis Sepolia
+- **Cross-Chain Bridge**: Full compatibility across all 4 networks
+- **Real-Time Analytics**: Transaction tracking and statistics on all networks
 - **Security Implementation**: All standard security features
 - **Comprehensive Testing**: 100% success rate across all functions
 - **Contract Verification**: All Hyperion contracts verified
+- **Complete Deployment**: All contracts deployed on all 4 networks
 
 ### PRODUCTION READY
 - **All contracts deployed and verified (Hyperion)**
@@ -197,6 +332,8 @@ npx hardhat run scripts/stake/deploy-staking-contract.ts --network mantle-testne
 ### Blockchain Explorers
 - **Hyperion Testnet**: https://hyperion-testnet-explorer.metisdevops.link
 - **Mantle Testnet**: https://sepolia.mantlescan.xyz
+- **Lazchain Testnet**: https://testnet-explorer.lazai.network
+- **Metis Sepolia Testnet**: https://sepolia.explorer.metis.io
 
 ### Project Resources
 - **Website**: https://hyperionkit.xyz
@@ -204,4 +341,4 @@ npx hardhat run scripts/stake/deploy-staking-contract.ts --network mantle-testne
 
 ---
 
-**This project represents a complete, production-ready DeFi ecosystem with all contracts verified and tested on Hyperion testnet, and core contracts deployed on Mantle testnet. The system is fully operational and ready for user interaction.**
+**This project represents a complete, production-ready DeFi ecosystem with all contracts deployed across 4 networks (Hyperion, Mantle, Lazchain, Metis Sepolia). All contracts are verified on Hyperion testnet and fully deployed on all networks. The system includes cross-chain bridge compatibility, enabling seamless token transfers between all supported networks. The ecosystem is fully operational and ready for user interaction.**

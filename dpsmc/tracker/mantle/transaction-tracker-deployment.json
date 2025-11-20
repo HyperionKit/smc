@@ -1,0 +1,15 @@
+{
+  "network": "Mantle Testnet",
+  "chainId": 5003,
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "transactionTracker": "0xB2ceDc981CD73877F35bE616c850C36C435cF055",
+  "contracts": {
+    "LiquidityPool": "0x93c714601b8bc0C9A9d605CEc99786847654598e",
+    "BuyVault": "0x1E0B86323fdFFa099AAEeE9B3C8B2f8C6E20fFa5",
+    "StakingRewards": "0x1a80Db4cf9E26BafCf672c534Ab219630fFE1A5E",
+    "Bridge": "0xd6629696A52E914433b0924f1f49d42216708276",
+    "Faucet": "0x16bA4d2C8A5FBaD32061A3eE59Cd2171E7ecFb3a"
+  },
+  "deploymentTime": "2025-11-20T07:02:35.068Z",
+  "blockNumber": 31038740
+}

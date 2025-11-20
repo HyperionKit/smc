@@ -1,0 +1,56 @@
+{
+  "network": "Hyperion Testnet",
+  "bridgeAddress": "0xfF064Fd496256e84b68dAE2509eDA84a3c235550",
+  "deployer": "0xa43B752B6E941263eb5A7E3b96e2e0DEA1a586Ff",
+  "timestamp": "2025-11-20T07:42:00.805Z",
+  "results": {
+    "chainSupport": [
+      {
+        "chainId": 5003,
+        "network": "Mantle Testnet",
+        "status": "enabled",
+        "txHash": "0x43a1b3595f0a588ebc54e74eb21a1bfe8c54587eedee773760f60c437ac566a7"
+      },
+      {
+        "chainId": 5000,
+        "network": "Mantle Mainnet",
+        "status": "enabled",
+        "txHash": "0xe94602152a219cfb64779de63fda5dd71aea8be492a63f339a2b134e37e9438d"
+      }
+    ],
+    "tokenMappings": [
+      {
+        "symbol": "USDT",
+        "mantleTokenAddress": "0x6aE086fB835D53D7fae1B57Cc8A55FEEaEC6ba5b",
+        "chainId": 5003,
+        "decimals": 6,
+        "status": "added",
+        "txHash": "0x9f71212a217d1a0253d0f679925ef321a439ed40434998f837adb24a2f662167"
+      },
+      {
+        "symbol": "USDC",
+        "mantleTokenAddress": "0x76837E513b3e6E6eFc828757764Ed5d0Fd24f2dE",
+        "chainId": 5003,
+        "decimals": 6,
+        "status": "added",
+        "txHash": "0x92376fd48ea76fd9b8ef9cfccda0274ab719c9ec749618f24b173c05dde28853"
+      },
+      {
+        "symbol": "DAI",
+        "mantleTokenAddress": "0xd6Ff774460085767e2c6b3DabcA5AE3D5a57e27a",
+        "chainId": 5003,
+        "decimals": 18,
+        "status": "added",
+        "txHash": "0x2743804ada249d62b57975dd6b67e181846dec106b9e0cc9b73d2a8cd76cbcc6"
+      },
+      {
+        "symbol": "WETH",
+        "mantleTokenAddress": "0xCa7b49d1C243a9289aE2316051eb15146125914d",
+        "chainId": 5003,
+        "decimals": 18,
+        "status": "added",
+        "txHash": "0xf6a5db489893cfb079611fa831f4eeb9029dac45059be689f3cb83ae3652163b"
+      }
+    ]
+  }
+}
